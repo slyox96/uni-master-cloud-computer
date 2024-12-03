@@ -1,0 +1,90 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+%Packages
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[acronym]{glossaries}
+\usepackage{appendix}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{amsmath}
+
+\usepackage{tabularx}
+\def\tabularxcolumn#1{m{#1}}
+
+\usepackage{geometry}
+\geometry{verbose,
+          bmargin=2.5cm,
+          lmargin=2cm,
+          rmargin=2cm
+          %footskip=-25pt
+          }
+
+\usepackage{hyperref}
+\hypersetup{
+    %hyperindex=true,
+    %linktocpage=true, % Seitenzahl statt Titel verlinkt
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,      
+    urlcolor=black,
+    pdftitle={Milestone 1},
+    pdfpagemode=FullScreen,
+    citecolor=black,
+    }
+    
+\RequirePackage[sfdefault,lf]{carlito}
+\parindent = 0pt  % Neue Absaetze nicht einruecken
+\parskip = 1ex % Neue Absaetze: 1/2 Zeile Abstand
+
+\usepackage[style=numeric, backend=biber, natbib=true, sorting=nyt, sortcites=false]{biblatex}
+
+\addbibresource{bibliography.bib}
+
+% Immer shortautor anzeigen, falls vorhanden
+\makeatletter
+\def\cbx@apa@ifnamesaved{\@firstoftwo}
+\makeatother
+
+
+\makeglossaries
+
+\begin{document}
+
+\setcounter{secnumdepth}{3} %setzt die Numerierungstiefe
+\pagestyle{plain}
+
+\input{TexFiles/acronym}
+\input{TexFiles/glossary}
+
+\input{TexFiles/settings}
+\input{TexFiles/titlepage}
+
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}  
+\fancyfoot[R]{\thepage}  % Seitennummer
+
+\input{TexFiles/Files/as_is}
+\newpage
+\input{TexFiles/Files/to_be}
+
+%\clearpage
+%
+%\printglossary[type=\acronymtype, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
+%
+%\clearpage
+%\printglossary[title=Glossar, toctitle=Glossar]
+%
+%\clearpage
+%\printbibliography[heading=bibintoc]
+
+\end{document}
