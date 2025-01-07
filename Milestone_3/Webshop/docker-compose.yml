@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  database:
+    image: postgres
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: webshop
+    ports:
+      - "5432:5432"
+    volumes:
+      - Databse:/var/lib/postgresql/data
+
+  image_storage:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env.docker
+    volumes:
+      - ./images/uploads:/app/src/uploads
+      - ./images/default:/app/src/default
+    environment:
+      - NODE_ENV=production
+
+volumes:
+  Databse:

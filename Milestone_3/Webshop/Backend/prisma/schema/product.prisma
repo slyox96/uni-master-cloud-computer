@@ -1,0 +1,17 @@
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  price       Float
+  stock       Int       
+  categorie   Category @default(Shirt)
+  image       String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+enum Category {
+  Shirt
+  Hose
+  Shoe
+}
