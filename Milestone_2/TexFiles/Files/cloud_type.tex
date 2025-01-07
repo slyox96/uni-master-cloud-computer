@@ -1,0 +1,88 @@
+\section{Cloud Transformation Plan}
+
+This Cloud Transformation Plan outlines the steps and considerations for migrating various departments and their systems to appropriate cloud setups. The plan takes into account different cloud models, including Private Cloud, Public Cloud, and Hybrid Cloud, and assigns the suitable migration strategy to each system.
+
+\subsection{Private Cloud Context}
+
+In a Private Cloud setup, the organization retains full control over its cloud infrastructure, which is typically hosted either on-premises or in a dedicated data center. This is particularly advantageous for critical or sensitive applications that must comply with strict security and regulatory requirements. Below is the migration strategy for relevant systems and applications to a Private Cloud.
+
+\subsubsection{Applications Hosted in a Private Cloud:}
+
+\begin{itemize}
+    \item \textbf{Facility Management:} The existing proprietary software with a REST API will continue to be used, but it may be migrated to a Private Cloud infrastructure to improve scalability, availability, and security.
+    \item \textbf{Reason for Private Cloud:} Facility Management may handle sensitive infrastructure data that must remain within a controlled environment to ensure better data protection.
+    \item \textbf{Migration Steps:} The current software may be refactored to improve integration with other systems, with the hosting infrastructure being moved to a Private Cloud platform.
+    \item \textbf{Finance Department:} The legacy SAP software will temporarily be hosted on a Private Cloud (with virtual machines) to maintain compatibility with older operating systems while benefiting from the advantages of cloud infrastructure.
+    \item \textbf{Reason for Private Cloud:} Financial applications often face strict compliance requirements and benefit from dedicated resources for better performance and security.
+    \item \textbf{Migration Steps:} The SAP infrastructure will be set up on a Private Cloud using VMs to ensure sensitive financial data remains within a controlled environment.
+\end{itemize}
+
+\subsection{Public Cloud Context}
+
+In a Public Cloud setup, the organization uses cloud services provided by third-party providers (such as Google Cloud, AWS, Azure) to host infrastructure and applications. The Public Cloud generally offers cost-effective, flexible, and scalable solutions, ideal for applications that do not have stringent compliance requirements and can benefit from shared resources.
+
+\subsubsection{Applications Hosted in a Public Cloud:}
+
+\begin{itemize}
+    \item \textbf{HR Department:} The new cloud-native HR software will be deployed in a Public Cloud infrastructure, using Google Kubernetes Engine (GKE) for container orchestration and scaling.
+    \item \textbf{Reason for Public Cloud:} Cloud-native applications benefit from scalability, high availability, and flexibility provided by public cloud environments.
+    \item \textbf{Migration Steps:} The HR software will be developed and deployed on Google Cloud, with containerized microservices efficiently managed through GKE.
+    \item \textbf{Production Department:} The newly developed, cloud-native Shift Management and Reporting System will be deployed in the Public Cloud using Google Cloud Run and GKE.
+    \item \textbf{Reason for Public Cloud:} The scalability and serverless options provided by Google Cloud Run are particularly suited for production environments that require rapid scaling.
+    \item \textbf{Migration Steps:} Implementation of the new system on Google Cloud Run and integration with other systems via APIs.
+    \item \textbf{Supply Management:} The new COTS SCM software will be fully deployed in the Public Cloud (Google Cloud) to optimize SCM functionalities.
+    \item \textbf{Reason for Public Cloud:} COTS solutions work well in Public Cloud environments, as these solutions often require extensive scalability and support from the cloud provider.
+    \item \textbf{Migration Steps:} Deployment of the COTS SCM software on Google Cloud and ensuring integration with internal systems.
+    \item \textbf{Sales Department:} CRM and lead management systems, as well as new COTS software solutions, will be hosted in the Public Cloud to enable real-time access and improve collaboration.
+    \item \textbf{Reason for Public Cloud:} The Public Cloud provides seamless integration and scalability for CRM and lead management systems.
+    \item \textbf{Migration Steps:} Migration of the CRM platform to Google Cloud and integration of existing systems into the cloud via APIs.
+\end{itemize}
+
+\subsection{Hybrid Cloud Context}
+
+A Hybrid Cloud model combines Private Cloud and Public Cloud infrastructures, providing greater flexibility and optimized solutions. In a Hybrid Cloud scenario, applications that have strict compliance or legacy system requirements remain in the Private Cloud, while applications that need scalability and cost savings are migrated to the Public Cloud.
+
+\subsubsection{Applications That Can Be Used in a Hybrid Cloud Setup:}
+
+\begin{itemize}
+    \item \textbf{Finance Department:} 
+    \begin{itemize}
+        \item \textbf{Private Cloud:} The legacy SAP software will remain in the Private Cloud for the transition period to meet security requirements.
+        \item \textbf{Public Cloud:} The future SAP cloud solution (e.g., SAP S/4HANA) will be deployed in the Public Cloud to modernize the department.
+        \item \textbf{Hybrid Setup:} Middleware will enable communication between the legacy SAP software in the Private Cloud and the future SAP solution in the Public Cloud.
+    \end{itemize}
+    \item \textbf{HR Department:} 
+    \begin{itemize}
+        \item \textbf{Private Cloud:} The existing HR system may temporarily remain in the Private Cloud until the new software is fully deployed.
+        \item \textbf{Public Cloud:} The new HR software will be deployed in the Public Cloud with cloud-native technologies such as Google Kubernetes Engine.
+        \item \textbf{Hybrid Setup:} A hybrid setup allows a gradual migration from the existing HR system in the Private Cloud to the new software in the Public Cloud.
+    \end{itemize}
+    \item \textbf{Warehouse Department:}
+    \begin{itemize}
+        \item \textbf{Private Cloud:} Deliforce will continue to run in the Private Cloud to ensure operational stability.
+        \item \textbf{Public Cloud:} The newly developed Warehouse Management System will be deployed in the Public Cloud to support scalability and future growth.
+        \item \textbf{Hybrid Setup:} Integration between Deliforce (Private Cloud) and the new Warehouse Management System (Public Cloud) ensures seamless operations.
+    \end{itemize}
+    \item \textbf{Sales Department:}
+    \begin{itemize}
+        \item \textbf{Private Cloud:} Sensitive customer data and lead management information may remain in the Private Cloud for enhanced security.
+        \item \textbf{Public Cloud:} COTS software and CRM tools will be deployed in the Public Cloud to provide better scalability and flexibility.
+        \item \textbf{Hybrid Setup:} A hybrid setup enables the retention of secure, private data in the Private Cloud while leveraging the benefits of the Public Cloud for CRM, analytics, and market development tools.
+    \end{itemize}
+    \item \textbf{Webshop Department:}
+    \begin{itemize}
+        \item \textbf{Private Cloud:} The existing CMS may continue to run in the Private Cloud if there are concerns about security or compliance, especially for payment processing.
+        \item \textbf{Public Cloud:} The newly developed website will be deployed in the Public Cloud to take advantage of modern technologies and optimize performance and scalability.
+        \item \textbf{Hybrid Setup:} The hybrid cloud strategy allows the parallel operation of the existing CMS (Private Cloud) and the new website (Public Cloud) to ensure a smooth migration and efficiency.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Conclusion}
+
+\begin{itemize}
+    \item \textbf{Private Cloud:} Best suited for sensitive data or legacy systems requiring high control and security.
+    \item \textbf{Public Cloud:} Ideal for cloud-native applications and systems that require high scalability, flexibility, and modern cloud services.
+    \item \textbf{Hybrid Cloud:} Offers a combination of both approaches, providing flexibility and a gradual migration of legacy systems to the Public Cloud.
+\end{itemize}
+
+This migration plan ensures that each system is migrated to the appropriate cloud environment based on its specific requirements, while taking full advantage of the respective cloud infrastructure benefits.

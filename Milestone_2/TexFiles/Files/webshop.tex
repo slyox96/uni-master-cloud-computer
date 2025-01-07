@@ -1,0 +1,65 @@
+\section{1. DevOps}
+
+DevOps is a culture and methodology aimed at improving collaboration between development (Dev) and operations (Ops). It includes:
+
+\begin{itemize}
+    \item \textbf{Automation:} Processes are automated from code creation to deployment (e.g., CI/CD pipelines).
+    \item \textbf{Collaboration:} Developers and operations teams work together on infrastructure and code.
+    \item \textbf{Continuous Improvement:} Regular iterations allow for faster response to customer requirements.
+    \item \textbf{Monitoring and Feedback:} Systems are monitored, and feedback is utilized to identify and resolve issues early.
+\end{itemize}
+
+\section{2. Cloud Native}
+
+Cloud Native refers to an approach where applications are designed specifically for the cloud. Key characteristics include:
+
+\begin{itemize}
+    \item \textbf{Microservices:} Applications are divided into small, independent services that can be developed, deployed, and scaled separately.
+    \item \textbf{Containerization:} Each service runs in a container (e.g., Docker), ensuring portability and consistency.
+    \item \textbf{Orchestration:} Tools like Kubernetes manage containers, handle deployment, scaling, and ensure high availability.
+    \item \textbf{Serverless Computing:} Some components can run without dedicated servers, where costs align with actual usage.
+\end{itemize}
+
+\newpage
+
+\section{Example: An Online Shop}
+
+Let us consider an online shop developed using DevOps and Cloud Native principles.
+
+\subsection*{Traditional Application}
+
+In traditional software development approaches, such an application is typically structured as a monolith, encompassing all components—user interface, backend logic, and database—within a single codebase. This monolithic design poses significant challenges for scalability and maintainability. For instance, deploying updates or new features requires redeployment of the entire application, and scaling under high traffic involves replicating the entire monolith, even if only a specific component experiences increased load.
+
+\subsection{Cloud Native Application}
+
+The online shop is divided into multiple \textbf{microservices}, such as:
+
+\begin{enumerate}
+    \item \textbf{User Management} (login/registration).
+    \item \textbf{Product Catalog} (viewing and searching products).
+    \item \textbf{Shopping Cart} (storing items in the cart).
+    \item \textbf{Order Management} (managing orders and payments).
+\end{enumerate}
+
+\textbf{How DevOps and Cloud Native Improve the Application:}
+
+\begin{enumerate}
+    \item \textbf{Microservices in Containers:}
+    Each microservice is deployed in its own container. For example, the product catalog runs in one container, and the shopping cart in another. Containers can be updated or scaled independently.
+    
+    \item \textbf{Automation through DevOps:}
+    CI/CD pipelines ensure that changes to a microservice are automatically tested and deployed. For instance, if a developer improves the shopping cart functionality, the new code is automatically tested and deployed to the cloud.
+    
+    \item \textbf{Scalability during High Load:}
+    When many users browse the product catalog simultaneously, Kubernetes can automatically start more containers for this service. Other services (e.g., user management) remain unaffected, ensuring optimal resource usage.
+    
+    \item \textbf{Monitoring and Feedback:}
+    Tools like Prometheus and Grafana monitor the application state. If, for example, the shopping cart service slows down, an alert is triggered immediately to facilitate prompt intervention.
+    
+\item \textbf{Serverless Functions with Google Cloud Functions:}
+Tasks like sending order confirmations can be automated with Google Cloud Functions, reducing complexity and costs while integrating with other Google services.
+
+
+
+\end{enumerate}
+

@@ -1,0 +1,125 @@
+\section{Migration Plan}
+
+This migration plan outlines the steps and considerations for transitioning the various departments and their systems to the specified configurations. Each department's migration plan incorporates tailored strategies, aligned with industry-standard migration approaches, such as Rehost, Replatform, Repurchase, Refactor/Rearchitect, Retain, and Retire.
+
+\subsection{Finance Department}
+\textbf{Current Systems:} SAP Software and Legacy Application. \\
+\textbf{Migration Strategy:} Rehost and Repurchase
+\begin{itemize}
+    \item \textbf{Rehost (Short-Term):} The Legacy Application will be hosted on Google Cloud Compute Engine using virtual machines (VMs) for the next three years. This ensures compatibility with legacy operating systems while leveraging cloud infrastructure for reliability and scalability.
+    \item \textbf{Repurchase (Long-Term):} After the three-year period, the department will transition entirely to SAP's cloud-based solutions (e.g., SAP S/4HANA hosted on Google Cloud). This aligns with the department's preference for SAP software and modernizes their operational platform.
+    \item \textbf{Integration:} Middleware will facilitate communication between the Legacy Application and SAP software during the transition period.
+    \item \textbf{Preparation for SAP Transition:} During the three-year transition phase, data migration and system alignment activities will be conducted to ensure a seamless migration to the SAP platform.
+\end{itemize}
+
+
+\subsection{HR Department}
+\textbf{Current Systems:} Existing HR System, including HR Software, Office Suite, and Shift Management functionality. \\
+\textbf{New System:} Custom-developed HR Software from our company. \\
+\textbf{Migration Strategy:} Refactor and Replace
+\begin{itemize}
+    \item \textbf{Refactor:} The newly developed HR Software will be designed as a cloud-native application utilizing Google Kubernetes Engine (GKE) for container orchestration and scaling. It will consolidate existing functionalities, such as HR management and shift planning, into a unified platform.
+    \item \textbf{Replace:} The existing HR System will be gradually phased out as the new software is rolled out. Data migration will ensure that historical data from the current system is preserved and integrated into the new platform.
+    \item \textbf{Deployment:} The application will run seamlessly across cloud, server, and client environments, ensuring high availability and accessibility for HR staff.
+    \item \textbf{Support and Training:} Comprehensive training sessions will be provided for HR staff to ensure smooth adoption. Documentation and user guides will accompany the transition.
+    \item \textbf{Integration:} The new HR Software will integrate with the Office Suite to maintain workflows and facilitate reporting, while offering additional enhancements for shift management.
+\end{itemize}
+
+
+\subsection{Production Department}
+\textbf{Current Systems:} Existing Production Environment with Reporting Management and Shift Management functionality. \\
+\textbf{New System:} Custom-developed Shift Management and Reporting Management System from our company. \\
+\textbf{Migration Strategy:} Refactor and Replace
+\begin{itemize}
+    \item \textbf{Refactor:} The newly developed system will be designed as a cloud-native application utilizing Google Cloud Run for serverless computing and Google Kubernetes Engine (GKE) for scalability. The new solution will modernize existing functionalities while incorporating additional features based on user feedback.
+    \item \textbf{Replace:} The existing system will be gradually replaced. Historical data and configurations from the current system will be migrated to the new platform to ensure continuity and usability.
+    \item \textbf{Integration:} APIs and middleware will ensure the new system integrates seamlessly with other internal systems and workflows in the Production environment.
+    \item \textbf{Pilot Phase and Feedback:} A pilot deployment will be conducted in a controlled production setting. Feedback from production teams will be used for iterative enhancements before full rollout.
+    \item \textbf{Support and Training:} Production staff will receive training on the new system to minimize disruptions during the transition. Ongoing support will be available to address potential challenges.
+\end{itemize}
+
+\subsection{Supply Management}
+\textbf{Current Systems:} Existing Supply Management System with SCM functionality. \\
+\textbf{New System:} Commercial-off-the-shelf (COTS) SCM software from a vendor. \\
+\textbf{Migration Strategy:} Replace
+\begin{itemize}
+    \item \textbf{Replace:} The existing SCM system will be phased out and replaced with the new COTS solution. A comprehensive plan for data migration will be implemented to ensure historical supply chain data is preserved and transitioned into the new system.
+    \item \textbf{Integration:} The COTS SCM software will be configured to integrate seamlessly with other internal systems, including production, warehouse, and quality management, to maintain end-to-end supply chain visibility.
+    \item \textbf{Customization:} Vendor-provided customization options will be leveraged to align the new software with the specific operational requirements of the Supply Management department.
+    \item \textbf{Training and Support:} Supply management staff will undergo training on the COTS SCM software to ensure a smooth transition. Vendor support and internal IT assistance will be available during the implementation phase.
+    \item \textbf{Implementation Phases:} The rollout will follow a phased approach, beginning with a pilot deployment in select supply chain operations before full-scale adoption.
+\end{itemize}
+
+
+\subsection{Quality Management Department}
+\textbf{Current Systems:} Existing Quality Management (QM) software. \\
+\textbf{New System:} COTS Quality Management (QM) software for Windows systems from a vendor. \\
+\textbf{Migration Strategy:} Replace
+\begin{itemize}
+    \item \textbf{Replace:} The existing QM software will be replaced with a new COTS solution. Data from the current system will be migrated to ensure continuity of quality records and compliance data.
+    \item \textbf{Deployment:} The new QM software will be deployed on Windows Server virtual machines hosted on Google Compute Engine, ensuring compatibility and scalability.
+    \item \textbf{Integration:} APIs will be utilized to integrate the new QM software with other systems, such as production and supply management, enabling centralized reporting and streamlined quality workflows.
+    \item \textbf{Phased Rollout:} A phased implementation will be adopted, starting with a pilot in a limited scope before extending to all quality management operations.
+    \item \textbf{Training and Support:} Training sessions will be provided for the Quality Management team, and vendor support will be leveraged to address challenges during the transition.
+\end{itemize}
+
+
+\subsection{Warehouse Department}
+\textbf{Current Systems:} Existing Warehouse Management System and Deliforce (on-premise or on-demand). \\
+\textbf{New Systems:}
+\begin{itemize}
+    \item Custom-developed Warehouse Management System from our company.
+    \item Continue using Deliforce (on-premise or on-demand).
+\end{itemize}
+\textbf{Migration Strategy:} Replace, Refactor, and Retain
+\begin{itemize}
+    \item \textbf{Replace:} The existing Warehouse Management System will be replaced with the new custom-developed system. Data migration will ensure continuity, and historical records will be preserved.
+    \item \textbf{Refactor:} The new Warehouse Management System will be developed as a cloud-native application, utilizing Google Cloud Storage for secure data handling and Google Kubernetes Engine (GKE) for scalable deployment.
+    \item \textbf{Retain:} Deliforce will continue to operate in its current configuration, either on-premise or on-demand, and will be integrated with the new Warehouse Management System to maintain operational continuity.
+    \item \textbf{Integration:} APIs will be designed to ensure seamless communication between the new Warehouse Management System, Deliforce, and other relevant systems, such as supply chain management and quality management.
+    \item \textbf{Training and Support:} Warehouse staff will receive training to familiarize themselves with the new system. Support will be available during and after deployment to address any challenges.
+    \item \textbf{Phased Rollout:} The new system will be introduced in phases, starting with a pilot implementation to minimize disruptions and gather feedback for iterative improvements.
+\end{itemize}
+
+\subsection{Sales Department}
+\textbf{Current Systems:} CRM system (shared with Operations and Customer Service), Lead Management Business Analytics, Office Suite, and Tableau (Market Development). \\
+\textbf{New Systems:}
+\begin{itemize}
+    \item Lead Management system (retained).
+    \item Additional COTS software.
+\end{itemize}
+\textbf{Migration Strategy:} Refactor and Retain
+\begin{itemize}
+    \item \textbf{Retain:} The current Lead Management system will continue to be used as-is. Data will be migrated if necessary to ensure smooth integration with the new systems.
+    \item \textbf{Refactor:} The new COTS software will be integrated with the existing systems, enhancing capabilities across the Sales, Operations, and Customer Service departments. Integration with the shared CRM system will ensure a unified view of customer data.
+    \item \textbf{Integration:} APIs will be used to connect the new COTS software with the shared CRM, Tableau, and other systems. This will ensure seamless access to customer information, reporting, and analytics for the Sales team.
+    \item \textbf{Support and Training:} Sales, Operations, and Customer Service staff will receive training on the new COTS software and its integration with the shared CRM, to enhance collaboration and efficiency across departments.
+    \item \textbf{Phased Rollout:} The deployment of the new software will be gradual, beginning with testing in one department before scaling to all users. Feedback will be collected to improve the implementation.
+\end{itemize}
+
+
+\subsection{Facility Management Department}
+\textbf{Current Systems:} Proprietary software on-premise with REST-API. \\
+\textbf{New Systems:} Continue using proprietary software with enhancements. \\
+\textbf{Migration Strategy:} Retain and Refactor
+\begin{itemize}
+    \item \textbf{Retain:} The current proprietary software will continue to be used as-is. The system's core functionality will remain unchanged.
+    \item \textbf{Refactor:} Enhancements will be made to the existing software to improve its integration with other systems, leveraging cloud capabilities. A migration to a cloud-based infrastructure (e.g., Google Cloud) for hosting the software may be considered to enhance scalability and availability while maintaining the REST-API for integration.
+    \item \textbf{Integration:} The proprietary software will be integrated with other systems using APIs, ensuring seamless data exchange across departments such as HR, Sales, and Operations. This will enable efficient facility management and better decision-making.
+    \item \textbf{Deployment:} The software will continue to run on-premise, with the option for cloud hosting if necessary for future scalability. The transition will be gradual to avoid disruption of facility operations.
+    \item \textbf{Training and Support:} Facility Management staff will receive training on the new features and integration points to ensure they can fully leverage the system’s capabilities.
+\end{itemize}
+
+
+\subsection{Webshop Department}
+\textbf{Current Systems:} CMS for webshop, integrates with Customer Service and Information Management (Jira Service Desk, Build Server, Development Server, Analysis). \\
+\textbf{New System:} Newly developed website with new technology. \\
+\textbf{Migration Strategy:} Refactor and Retain
+\begin{itemize}
+    \item \textbf{Retain:} The current CMS will continue to be used for the existing webshop functionality until the new website is fully developed and ready for deployment. The integration with Customer Service and Information Management will remain in place to ensure continuity in communication and operations.
+    \item \textbf{Refactor:} The new website will be developed using modern technologies (e.g., React frontend, Python backend) to provide enhanced performance, scalability, and user experience. It will be integrated with existing systems such as Jira Service Desk, Build Server, Development Server, and Analysis tools.
+    \item \textbf{Integration:} APIs will be used to ensure seamless integration between the new website and Customer Service tools (e.g., CRM), as well as with Information Management systems (e.g., Jira, Build and Development Servers). This will enable streamlined workflows and data sharing across departments.
+    \item \textbf{Deployment:} The new website will be gradually rolled out to minimize disruption. Initially, it will run in parallel with the existing CMS, with full migration planned once the new system is stable.
+    \item \textbf{Training and Support:} Training will be provided for both the web development team and Customer Service staff to ensure smooth adoption of the new system. Continuous support will be available to address any issues during and after deployment.
+\end{itemize}
+
