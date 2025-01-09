@@ -35,9 +35,9 @@ router.get('/:id', async (req: Request, res: Response): Promise<any> => {
 // CREATE a new product
 router.post('/', async (req: Request, res: Response) => {
   try {
-    const { name, description, price, stock, categorie, image } = req.body;
+    const { name, description, price, stock, category, image } = req.body;
     const product = await prisma.product.create({
-      data: { name, description, price, stock, categorie, image },
+      data: { name, description, price, stock, category, image },
     });
 
     res.status(201).json(product);
@@ -50,11 +50,11 @@ router.post('/', async (req: Request, res: Response) => {
 router.put('/:id', async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { name, description, price, stock, categorie, image } = req.body;
+    const { name, description, price, stock, category, image } = req.body;
 
     const updatedProduct = await prisma.product.update({
       where: { id: parseInt(id) },
-      data: { name, description, price, stock, categorie, image },
+      data: { name, description, price, stock, category, image },
     });
 
     res.status(200).json(updatedProduct);
