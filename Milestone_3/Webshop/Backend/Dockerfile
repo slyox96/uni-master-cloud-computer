@@ -14,7 +14,7 @@ RUN npx prisma generate
 RUN npm run build
 
 # Der Port, auf dem die App läuft
-EXPOSE 4000
+EXPOSE 3000
 
 # Führe Migrationen aus und starte die Anwendung
 CMD ["sh", "-c", "npx prisma migrate deploy && npm run start"]

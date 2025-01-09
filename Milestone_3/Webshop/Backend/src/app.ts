@@ -4,7 +4,7 @@ import { HttpError } from './errorHandler/HttpError';
 import productRoutes from './routes/productRoutes';
 
 const app = express();
-const PORT = process.env.BACKEND_PORT || 4000;
+const PORT = process.env.BACKEND_PORT || 3000;
 
 app.use(bodyParser.json());
 

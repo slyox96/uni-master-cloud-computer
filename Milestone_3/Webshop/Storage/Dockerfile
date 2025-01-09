@@ -13,7 +13,7 @@ COPY . .
 RUN npm run build
 
 # Port für den Service
-EXPOSE 3000
+EXPOSE 4000
 
 # Startbefehl
 CMD ["npm", "start"]
