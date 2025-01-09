@@ -10,8 +10,6 @@ services:
       - .env
     depends_on:
       - database
-    volumes:
-      - ./Backend:/app
     environment:
       - NODE_ENV=production
     command: >
