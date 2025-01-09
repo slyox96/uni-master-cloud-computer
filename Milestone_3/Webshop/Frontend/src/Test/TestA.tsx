@@ -1,16 +1,16 @@
 import Quantity from '../components/Quantity';
 import ShopingCard from '../components/ShopingCard'
 
-import styles from './App.module.scss';
+import styles from './TestA.module.scss';
 
-function App() {
- 
+function TestA() {
+
   return (
     <div className={styles.container}>
         <ShopingCard />
-        {/* <Quantity></Quantity> */}
+        <ShopingCard />
     </div>
   )
 }
 
-export default App
+export default TestA

@@ -5,10 +5,10 @@ import fs from 'fs';
 import path from 'path';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.STORAGE_PORT || 3000;
 
 const CORS_ORIGIN = process.env.CORS_ORIGIN || 'http://localhost';
-const CORS_PORT = process.env.CORS_PORT || 8000;
+const CORS_PORT = process.env.CORS_PORT || 3000;
 
 const corsOptions = {
   origin: `${CORS_ORIGIN}:${CORS_PORT}`,

@@ -4,6 +4,7 @@ import plus from "../assets/plus-solid.svg";
 import minus from "../assets/minus-solid.svg"
 
 import styles from './Quantity.module.scss';
+
 const Quantity = () => {
   const [quantity, setQuantity] = useState(1);
 

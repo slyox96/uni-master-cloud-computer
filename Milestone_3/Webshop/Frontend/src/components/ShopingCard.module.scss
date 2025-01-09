@@ -1,72 +1,73 @@
-$image-size: 20rem;
+$card-size: 90%;
 
 .card {
-    width: calc($image-size * 3);
-    height: $image-size;
+    width: $card-size;
+    height: auto;
     background-color: white;
-    display: grid;
-    grid-template-columns: $image-size auto;
+    display: flex;
+    margin-bottom: 1rem;
 
     img {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: $image-size;
-        height: $image-size;
+        width: $card-size / 3;
+        aspect-ratio: 1 / 1;
         object-fit: fill;
+        // background-color: lightgreen;
     }
 
-    //   .information {
-    //     display: grid;
-    //     grid-template-rows: 4rem 1px auto 2rem; /* Die Reihenhöhe anpassen */
-    //     padding: 0 1rem;
-    //     color: black;
-
-    //     h2 {
-    //       margin: 0;
-    //       font-size: 2.5rem;
-    //     }
-
-    //     hr {
-    //       width: 100%;
-    //       border: 0;
-    //       border-top: 1px solid #000000;
-    //       margin: 0;
-    //     }
-
-    //     p {
-    //         display: -webkit-box;
-    //         -webkit-box-orient: vertical;
-    //         -webkit-line-clamp: 3; /* Number of lines to show */
-    //         overflow: hidden;
-    //         text-overflow: ellipsis;
-    //       }
-    //   }
-
     .information {
-        display: grid;
-        grid-template-rows: .5fr 2fr .5fr;
-        padding: 0 1rem;
+        width: calc(($card-size / 3) * 3);
+        aspect-ratio: 3 / 1;
         color: black;
+        // background-color: lightblue;
+        display: flex;
+        flex-direction: column;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
 
-        .title{
+        .title {
+            height: 20%;
             border-bottom: 1px solid black;
-        }
+            // background-color: lightpink;
+            display: flex;
+            align-items: center;
 
-        .description{
-            p{
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 6;
-                overflow: hidden;
-                text-overflow: ellipsis;
+            span {
+                font-size: 120%;
+                margin: 0;
             }
         }
 
-        .buy{
+        .description {
+            height: 60%;
+            font-size: 80%;
+            overflow: hidden;
+            text-overflow: ellipsis; 
+        }
+
+        .buy {
+            height: 20%;
             display: flex;
             justify-content: space-between;
-            margin: .5rem;
+            align-items: center;
+            // background-color: rgb(202, 33, 33);
+
+            .add {
+                border-radius: 8px;
+                border: 1px solid transparent;
+                font-size: .75rem;
+                font-weight: 500;
+                font-family: inherit;
+                background-color: #1a1a1a;
+                cursor: pointer;
+                transition: border-color 0.25s;
+
+                &:hover {
+                    background-color: rgb(196, 196, 196);
+                }
+            }
         }
     }
 }
