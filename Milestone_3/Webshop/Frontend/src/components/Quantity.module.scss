@@ -1,0 +1,41 @@
+.quantity_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    .quantity_button {
+        width: 2.5rem;
+        height: 2.5rem;
+        background-color: #ffffff;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+      
+        &:hover {
+          background-color: rgb(196, 196, 196);
+        }
+      
+        &:disabled {
+          background-color: #ccc;
+          cursor: not-allowed;
+        }
+
+        img {
+            width: 1.5rem;
+            height: 1.5rem;
+          }
+      }
+      
+  
+    .quantity_display {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+      margin: 0 1rem;
+      text-align: center;
+    }
+  }
+  
