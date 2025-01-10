@@ -9,13 +9,13 @@ const TestHome = () => {
     <div className={styles.home_page}>
       <div className={styles.button_container}>
         <button
-          onClick={() => navigate("/A")}
+          onClick={() => navigate("/Shop")}
           className={styles.navigate_button}
         >
           Go to Page A
         </button>
         <button
-          onClick={() => navigate("/B")}
+          onClick={() => navigate("/Admin")}
           className={styles.navigate_button}
         >
           Go to Page B

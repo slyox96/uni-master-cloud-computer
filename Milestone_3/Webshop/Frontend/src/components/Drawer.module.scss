@@ -1,0 +1,37 @@
+@use "../scss/variables.scss";
+@use "../scss/colors.scss";
+
+nav {
+    position: fixed;
+    left: 0;
+    top: variables.$topbar-height;
+    width: variables.$drawer-width;
+    height: 100%;
+    background-color: colors.$primary;
+    ul {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        overflow: auto;
+        margin-top: 3rem;
+
+        li {
+            display: block;
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: none;
+            font-weight: bolder;
+            font-size: large;
+            color: #fff;
+            align-items: center;
+            padding: 8px 16px;
+            cursor: default;
+
+            &:hover {
+                background-color: #555;
+                color: white;
+            }
+        }
+    }
+}

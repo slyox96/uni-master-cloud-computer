@@ -11,7 +11,7 @@ $card-size: 90%;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: $card-size / 3;
+        width: calc($card-size / 3);
         aspect-ratio: 1 / 1;
         object-fit: fill;
         // background-color: lightgreen;

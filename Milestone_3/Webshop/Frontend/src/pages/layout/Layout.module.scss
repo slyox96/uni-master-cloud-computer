@@ -1,44 +1,30 @@
-.layout {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100wh;
-    overflow: hidden;
-    
-    .main {
-      flex: 1;
-      display: flex;
-  
-      .sidebar {
-        width: 15rem;
-        background-color: #f4f4f4;
-        padding: 1rem;
-  
-        nav ul {
-          list-style: none;
-          padding: 0;
-  
-          li {
-            margin: 1rem 0;
-  
-            a {
-              text-decoration: none;
-              color: #333;
-  
-              &:hover {
-                color: #3498db;
-              }
-            }
-          }
-        }
-      }
-  
-      .content {
-        flex: 1;
-        padding: 1rem;
-        background-color: #fff;
-        overflow-y: hidden;
-      }
-    }
+@use "../../scss//variables.scss";
+
+.root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
   }
-  
+
+  .drawer {
+      position: fixed;
+      left: 0;
+      top: 0;
+  }
+
+  .content_container{
+      position: absolute;
+      top: variables.$topbar-height;
+      left: variables.$drawer-width;
+      right: 0;
+      bottom: 0;
+      overflow: auto;
+      background-color: lightgray;
+  }
+}
