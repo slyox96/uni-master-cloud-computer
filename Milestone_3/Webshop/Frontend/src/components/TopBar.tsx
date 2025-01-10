@@ -17,13 +17,13 @@ export const TopBar: React.FC<TopBarProps> = ({isAdmin}) => {
             </div>
             {isAdmin && (
                 <div className={styles.right}>
-                    <button
+                    {/* <button
                         type="button"
                         className="button"
                         onClick={() => console.log("click")}
                     >
                         button
-                    </button>
+                    </button> */}
                 </div>
             )}
         </div>

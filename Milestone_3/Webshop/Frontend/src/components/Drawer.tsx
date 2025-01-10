@@ -13,7 +13,8 @@ export const Drawer: React.FC = () => {
 
     const routes: Route[] = [
         { id: 1, text: 'Shop', route: 'Shop' },
-        { id: 2, text: 'Admin', route: 'Admin' },
+        { id: 2, text: 'Cart', route: 'Cart' },
+        { id: 3, text: 'Admin', route: 'Admin' },
     ];
 
     return (
