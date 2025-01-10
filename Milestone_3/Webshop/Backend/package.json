@@ -11,7 +11,7 @@
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
     "prisma:deploy": "prisma migrate deploy",
-    "update:prisma": "node updatePrisma.js"
+    "prisma:update": "node updatePrisma.js"
   },
   "keywords": [],
   "author": "",

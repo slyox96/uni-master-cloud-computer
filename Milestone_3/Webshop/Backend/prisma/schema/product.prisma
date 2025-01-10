@@ -4,10 +4,10 @@ model Product {
   description String
   price       Float
   stock       Int       
-  Category    Category @default(Shirt)
+  category    Category @default(Shirt)
   image       String
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 enum Category {
