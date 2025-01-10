@@ -6,12 +6,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
-    env_file:
-      - .env
     depends_on:
       - database
     environment:
-      - NODE_ENV=production
+      DATABASE_URL: ${DATABASE_URL}
     command: >
       sh -c "npx prisma migrate deploy && npm run start"
 
@@ -36,6 +34,7 @@ services:
       sh -c "if [ ! -d node_modules ]; then npm install; fi && npx prisma studio --port 5555"
     depends_on:
       - database
+      - backend
     env_file:
       - .env
 
