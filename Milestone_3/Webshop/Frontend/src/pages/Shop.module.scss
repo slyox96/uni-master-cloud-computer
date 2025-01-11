@@ -2,24 +2,21 @@
 
 $searchbar-height: 5rem;
 
-.container {
+.searchbar {
+    position: fixed;
+    top: variables.$topbar-height;
+    width: 100%;
+    height: $searchbar-height;
+    background-color: lightblue;
+}
 
-    .searchbar {
-        position: fixed;
-        top: variables.$topbar-height;
-        width: 100%;
-        height: $searchbar-height;
-        background-color: lightblue;
-    }
-
-    .product_List {
-        margin-top: calc($searchbar-height + 1rem);
-        margin-left: 5rem;
-        margin-right: 5rem;
-        // background-color: lightcoral;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
+.product_List {
+    margin-top: calc($searchbar-height + 1rem);
+    margin-left: 5rem;
+    margin-right: 5rem;
+    // background-color: lightcoral;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
