@@ -2,6 +2,8 @@ import { create } from "zustand";
 import { addToCart } from "./actions/addToCart";
 import { removeFromCart } from "./actions/removeFromCart";
 import { clearCart } from "./actions/clearCart";
+import { incrementQuantity } from "./actions/incrementQuantity";
+import { decrementQuantity } from "./actions/decrementQuantity";
 import { Product, CartItem } from "../types/Product";
 import ApiService from "../api/ApiService";
 
@@ -13,6 +15,8 @@ interface StoreState {
   fetchProducts: () => Promise<void>;
   addToCart: (productId: number, quantity?: number) => void;
   removeFromCart: (productId: number) => void;
+  incrementQuantity: (productId: number, incrementBy?: number) => void;
+  decrementQuantity: (productId: number, decrementBy?: number) => void;
   clearCart: () => void;
 }
 
@@ -45,6 +49,16 @@ export const useStore = create<StoreState>((set) => ({
   removeFromCart: (productId) =>
     set((state) => ({
       cart: removeFromCart(state.cart, productId),
+    })),
+
+  incrementQuantity: (productId, incrementBy = 1) =>
+    set((state) => ({
+      cart: incrementQuantity(state.cart, productId, incrementBy),
+    })),
+
+  decrementQuantity: (productId, decrementBy = 1) =>
+    set((state) => ({
+      cart: decrementQuantity(state.cart, productId, decrementBy),
     })),
 
   clearCart: () => set({ cart: clearCart() }),
