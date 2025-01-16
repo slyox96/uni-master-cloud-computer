@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import productRoutes from './routes/productRoutes';
 import orderRoutes from './routes/orderRoutes';
@@ -8,6 +9,17 @@ import { httpError } from './errorHandler/httpError';
 
 const app = express();
 const PORT = process.env.BACKEND_PORT || 3000;
+
+const CORS_ORIGIN = process.env.CORS_ORIGIN || 'http://localhost';
+const CORS_PORT = process.env.CORS_PORT || 5173;
+
+const corsOptions = {
+    origin: `${CORS_ORIGIN}:${CORS_PORT}`,
+    methods: process.env.CORS_METHODS,
+    allowedHeaders: process.env.CORS_ALLOWED_HEADERS
+  };
+
+  app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 

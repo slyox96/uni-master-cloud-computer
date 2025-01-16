@@ -12,13 +12,19 @@ const TestHome = () => {
           onClick={() => navigate("/Shop")}
           className={styles.navigate_button}
         >
-          Go to Page A
+          Go to Webshop
         </button>
         <button
-          onClick={() => navigate("/Admin")}
+          onClick={() => navigate("/TestA")}
           className={styles.navigate_button}
         >
-          Go to Page B
+          Go to Test A
+        </button>
+        <button
+          onClick={() => navigate("/TestB")}
+          className={styles.navigate_button}
+        >
+          Go to Test B
         </button>
       </div>
     </div>

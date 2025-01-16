@@ -18,10 +18,9 @@ $card-size: 70%;
     }
 
     .information {
-        width: calc(($card-size / 3) * 3);
+        width: $card-size;
         aspect-ratio: 3 / 1;
         color: black;
-        // background-color: lightblue;
         display: flex;
         flex-direction: column;
         margin-left: 5%;
