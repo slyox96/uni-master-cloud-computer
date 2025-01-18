@@ -9,8 +9,7 @@ services:
     env_file:
       - .env
     depends_on:
-      database:
-        condition: service_healthy
+      - database
 
   database:
     image: postgres:15
@@ -21,11 +20,6 @@ services:
       - .env
     volumes:
       - database_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
   # prisma-studio:
   #   image: node:lts
