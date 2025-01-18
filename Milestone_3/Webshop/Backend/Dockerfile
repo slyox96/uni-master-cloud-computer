@@ -1,20 +1,26 @@
+# Dockerfile.prod für die Produktionsumgebung
+
 FROM node:lts
 
 WORKDIR /app
 
-# Installiere nur die benötigten Abhängigkeiten
+# Kopiere nur die package-Dateien und installiere Abhängigkeiten
 COPY package*.json ./
 RUN npm install
+# RUN npm install --production
 
 # Kopiere den restlichen Code
 COPY . .
 
-# Prisma-Client generieren und TypeScript kompilieren
-RUN npx prisma generate
+# Prisma-Client generieren
+RUN npm install typescript
+RUN npm run prisma:generate
+RUN npx prisma migrate deploy
 RUN npm run build
 
 # Der Port, auf dem die App läuft
 EXPOSE 3000
 
-# Führe Migrationen aus und starte die Anwendung
-CMD ["sh", "-c", "npx prisma migrate deploy && npm run start"]
+# Startet die Anwendung in der Produktionsumgebung
+CMD [ "npm" "start"]
+

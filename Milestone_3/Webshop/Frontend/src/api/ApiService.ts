@@ -66,7 +66,7 @@ class ApiService {
     }
   }
 
-  public static async deleteRequest(endpoint: string, headers: Headers = {}): Promise<unknown> {
+  public static async delete(endpoint: string, headers: Headers = {}): Promise<unknown> {
     try {
       const response = await fetch(`${this.fullUrl}${endpoint}`, {
         method: "DELETE",

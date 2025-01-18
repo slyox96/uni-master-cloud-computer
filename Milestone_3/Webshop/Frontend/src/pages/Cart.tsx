@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from "./Cart.module.scss";
 import ShopingCard from '../components/ShopingCard';
 import { useStore } from '../store/store';

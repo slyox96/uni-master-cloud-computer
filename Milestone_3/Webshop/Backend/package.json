@@ -22,7 +22,8 @@
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "express": "^4.21.2",
-    "prisma": "^6.2.0"
+    "prisma": "^6.2.0",
+    "TypeScript": "npm:typescript@^5.7.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
