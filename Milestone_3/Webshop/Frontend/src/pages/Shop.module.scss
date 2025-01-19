@@ -8,6 +8,9 @@ $searchbar-height: 5rem;
     width: 100%;
     height: $searchbar-height;
     background-color: lightblue;
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
 }
 
 .product_List {

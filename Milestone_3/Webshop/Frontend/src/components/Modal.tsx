@@ -1,6 +1,5 @@
 import React, { forwardRef, RefObject } from 'react';
 import styles from './Modal.module.scss';
-import PropTypes from 'prop-types';
 import {toggleModal} from '../util/toggleModal'
 
 interface ModalProps {
@@ -38,7 +37,6 @@ const ReactNodePropType = (props: Record<string, unknown>, propName: string, com
     return new Error(`${propName} in ${componentName} is not a valid ReactNode.`);
 };
 
-// Beispiel
 Modal.propTypes = {
     children: ReactNodePropType,
 };

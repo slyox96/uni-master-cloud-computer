@@ -7,6 +7,7 @@ import styles from "./Shop.module.scss";
 import ShopingCard from '../components/ShopingCard';
 import { Modal } from '../components/Modal';
 import { toggleModal } from '../util/toggleModal';
+import CategoryDropdown from '../components/CategoryDropdown';
 
 export const Shop = () => {
     const { products, isLoading, error, fetchProducts } = useStore();
@@ -26,16 +27,21 @@ export const Shop = () => {
         return <div>Error: {error}</div>;
     }
 
-    
-  const openModal = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setModalContent(
-    <div>
-        Hello World
-    </div>
-    );
-    toggleModal(ModalRef);
-  }
+    // const handlePriceChange = (minPrice: number, maxPrice: number) => {
+    //     console.log(`Min price: ${minPrice}, Max price: ${maxPrice}`);
+    // }
+
+    const openModal = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setModalContent(
+            <div>
+                
+            </div>
+        );
+        toggleModal(ModalRef);
+    }
+
+
 
     return (
         <>
@@ -47,6 +53,7 @@ export const Shop = () => {
             </Modal>
             <div className={styles.searchbar}>
                 <button onClick={(e) => openModal(e)}>Modal</button>
+                <CategoryDropdown />
             </div>
             {products.length === 0 ? (
                 <p>No products available</p>
