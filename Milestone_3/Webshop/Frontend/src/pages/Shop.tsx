@@ -8,6 +8,7 @@ import ShopingCard from '../components/ShopingCard';
 import { Modal } from '../components/Modal';
 import { toggleModal } from '../util/toggleModal';
 import CategoryDropdown from '../components/CategoryDropdown';
+import PricePicker from '../components/PricePicker';
 
 export const Shop = () => {
     const { products, isLoading, error, fetchProducts } = useStore();
@@ -54,6 +55,7 @@ export const Shop = () => {
             <div className={styles.searchbar}>
                 <button onClick={(e) => openModal(e)}>Modal</button>
                 <CategoryDropdown />
+                <PricePicker />
             </div>
             {products.length === 0 ? (
                 <p>No products available</p>

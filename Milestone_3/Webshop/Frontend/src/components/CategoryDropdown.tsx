@@ -3,7 +3,8 @@ import { Category } from '../types/Product';
 import styles from './CategoryDropdown.module.scss';
 
 const CategoryDropdown: React.FC = () => {
-    const [selectedCategory, setSelectedCategory] = useState<Category>(Category.Shirt);
+    
+    const [selectedCategory, setSelectedCategory] = useState<Category>(Category.All);
 
     // Funktion zur Handhabung der Auswahländerung
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -21,10 +22,11 @@ const CategoryDropdown: React.FC = () => {
                 value={selectedCategory}
                 onChange={handleChange}
                 className={styles.select}
+                defaultValue={'All'}
             >
-                <option key='All' value='All'>
+                {/* <option key='All' value='All'>
                     All
-                </option>
+                </option> */}
                 {Object.values(Category).map((category) => (
                     <option key={category} value={category}>
                         {category}

@@ -1,4 +1,5 @@
 export enum Category {
+    All = "All",
     Shirt = "Shirt",
     Pant = "Pant",
     Shoe = "Shoe",
