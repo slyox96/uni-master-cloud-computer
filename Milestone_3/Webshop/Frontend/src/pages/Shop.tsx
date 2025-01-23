@@ -7,10 +7,10 @@ import styles from "./Shop.module.scss";
 import ShopingCard from "../components/ShopingCard";
 import { Modal } from "../components/Modal";
 import { toggleModal } from "../util/toggleModal";
-import CategoryDropdown from "../components/CategoryDropdown";
-import PricePicker from "../components/PricePicker";
-import DualRangeSlider from "../components/MultiRangeSlider";
-import MultiRangeSlider from "../components/MultiRangeSlider";
+import CategoryDropdown from "../components/search/CategoryDropdown";
+import PricePicker from "../components/search/PricePicker";
+import MultiRangeSlider from "../components/search/MultiRangeSlider";
+import { Dropdown } from "../components/search/Dropdown";
 
 export const Shop = () => {
   const { products, isLoading, error, fetchProducts } = useStore();
@@ -46,15 +46,10 @@ export const Shop = () => {
         <div>{modalContent}</div>
       </Modal>
       <div className={styles.searchbar}>
-        <button onClick={(e) => openModal(e)}>Modal</button>
+        {/* <button onClick={(e) => openModal(e)}>Modal</button> */}
         <CategoryDropdown />
+        <Dropdown />
         {/* <PricePicker /> */}
-        {/* <DualRangeSlider min={1} max={100} initialMin={20} initialMax={70} /> */}
-        <MultiRangeSlider
-          min={0}
-          max={1000}
-          onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
-        />
       </div>
       {products.length === 0 ? (
         <p>No products available</p>

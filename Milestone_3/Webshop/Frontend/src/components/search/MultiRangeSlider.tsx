@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import styles from "./MultiRangeSlider.module.scss";
+import styles from "./multiRangeSlider.module.scss";
 
-interface MultiRangeSliderProps {
+type MultiRangeSliderProps = {
   min: number;
   max: number;
   onChange: (values: { min: number; max: number }) => void;
-}
+};
 
 const MultiRangeSlider: React.FC<MultiRangeSliderProps> = ({ min, max, onChange }) => {
   const [minVal, setMinVal] = useState<number>(min);

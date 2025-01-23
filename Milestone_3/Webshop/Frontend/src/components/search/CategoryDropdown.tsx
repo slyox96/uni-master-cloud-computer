@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Category } from '../types/Product';
+import { Category } from '../../types/Product';
 import styles from './CategoryDropdown.module.scss';
 
 const CategoryDropdown: React.FC = () => {
@@ -14,9 +14,6 @@ const CategoryDropdown: React.FC = () => {
 
     return (
         <div >
-            {/* <label htmlFor="category" className={styles.label}>
-        Select Category:
-      </label> */}
             <select
                 id="category"
                 value={selectedCategory}
@@ -24,19 +21,12 @@ const CategoryDropdown: React.FC = () => {
                 className={styles.select}
                 defaultValue={'All'}
             >
-                {/* <option key='All' value='All'>
-                    All
-                </option> */}
                 {Object.values(Category).map((category) => (
                     <option key={category} value={category}>
                         {category}
                     </option>
                 ))}
             </select>
-
-            {/* <div className={styles.selectedCategory}>
-        <p>Selected Category: {selectedCategory}</p>
-      </div> */}
         </div>
     );
 };

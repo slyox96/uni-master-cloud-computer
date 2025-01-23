@@ -1,0 +1,38 @@
+.dropdown {
+    position: relative;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  
+    .selected {
+      padding: 10px;
+      background-color: #fff;
+      color: #666;
+    }
+  
+    .options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  
+      .option {
+        padding: 10px;
+        color: #666;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: violet; // Hover-Farbe
+          color: white; // Textfarbe
+        }
+      }
+    }
+  }
+  

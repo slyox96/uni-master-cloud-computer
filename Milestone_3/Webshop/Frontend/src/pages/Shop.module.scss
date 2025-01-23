@@ -1,16 +1,18 @@
 @use "../scss/variables.scss";
+@use "../scss/form.scss";
+
 
 $searchbar-height: 5rem;
 
 .searchbar {
     position: fixed;
     top: variables.$topbar-height;
-    width: 100%;
+    width: calc(100% - variables.$drawer-width);
     height: $searchbar-height;
     background-color: lightblue;
     display: flex;
-    // justify-content: space-between;
     align-items: center;
+    gap: 0.5rem;
 }
 
 .product_List {
