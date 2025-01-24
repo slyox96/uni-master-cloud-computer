@@ -1,12 +1,31 @@
-.container{
+.container {
+    height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    background-color: rgb(117, 115, 115);
 
-    .inner_container{
-        width: 35rem;
-        height: 90%;
-        background-color: lightcoral;  
+    .form {
+        background-color: red;
+        ul {
+            list-style: none;
+            padding: 0;
+            li {
+                margin-bottom: .5rem;
+
+                .input_group{
+                    label {
+                        margin-right: 1rem;
+                    }
+                    input {
+                        margin-right: 2rem;
+                    }
+                    input:last-child{
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
     }
 }

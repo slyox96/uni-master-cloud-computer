@@ -4,13 +4,13 @@ import { useStore } from "../store/store";
 import { Product } from "../types/Product";
 
 import styles from "./Shop.module.scss";
+
 import ShopingCard from "../components/ShopingCard";
 import { Modal } from "../components/Modal";
 import { toggleModal } from "../util/toggleModal";
 import CategoryDropdown from "../components/search/CategoryDropdown";
-import PricePicker from "../components/search/PricePicker";
-import MultiRangeSlider from "../components/search/MultiRangeSlider";
 import { Dropdown } from "../components/search/Dropdown";
+
 
 export const Shop = () => {
   const { products, isLoading, error, fetchProducts } = useStore();
@@ -40,6 +40,8 @@ export const Shop = () => {
     toggleModal(ModalRef);
   };
 
+
+
   return (
     <>
       <Modal ref={ModalRef}>
@@ -49,7 +51,7 @@ export const Shop = () => {
         {/* <button onClick={(e) => openModal(e)}>Modal</button> */}
         <CategoryDropdown />
         <Dropdown />
-        {/* <PricePicker /> */}
+
       </div>
       {products.length === 0 ? (
         <p>No products available</p>

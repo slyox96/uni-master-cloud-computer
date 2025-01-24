@@ -16,13 +16,11 @@ const TestHome = () => {
         </button>
         <button
           onClick={() => navigate("/TestA")}
-          className={styles.navigate_button}
         >
           Go to Test A
         </button>
         <button
           onClick={() => navigate("/TestB")}
-          className={styles.navigate_button}
         >
           Go to Test B
         </button>

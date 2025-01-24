@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from "react-router";
-import './index.scss'
+
 import TestHome from './Test/TestHome.tsx';
 import Layout from './pages/layout/Layout.tsx';
 import { Admin } from './pages/Admin.tsx';
@@ -8,6 +8,9 @@ import { Cart } from './pages/Cart.tsx';
 import { Shop } from './pages/Shop.tsx';
 import TestA from './Test/TestA.tsx';
 import TestB from './Test/TestB.tsx';
+
+import './index.scss'
+// import './scss/form.scss';
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
