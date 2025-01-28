@@ -10,6 +10,7 @@ import { Modal } from "../components/Modal";
 import { toggleModal } from "../util/toggleModal";
 import CategoryDropdown from "../components/search/CategoryDropdown";
 import { Dropdown } from "../components/search/Dropdown";
+import TestB from "../Test/TestB";
 
 
 export const Shop = () => {
@@ -36,11 +37,9 @@ export const Shop = () => {
 
   const openModal = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setModalContent(<div></div>);
+    setModalContent(<TestB />);
     toggleModal(ModalRef);
   };
-
-
 
   return (
     <>
@@ -48,7 +47,7 @@ export const Shop = () => {
         <div>{modalContent}</div>
       </Modal>
       <div className={styles.searchbar}>
-        {/* <button onClick={(e) => openModal(e)}>Modal</button> */}
+        <button onClick={(e) => openModal(e)}>Modal</button>
         <CategoryDropdown />
         <Dropdown />
 
