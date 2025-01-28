@@ -1,13 +1,12 @@
 @use "../scss/colors.scss";
 
-.container {
+.modify_container {
   flex: 1;
   display: flex;
   justify-content: end;
   align-items: center;
   padding-right: 0.5rem;
   gap: 0.5rem;
-  opacity: 0;
   transition: opacity 0.3s;
 
   .button_edit {
@@ -27,6 +26,11 @@
     &:hover {
       background-color: colors.$edit-secondary;
     }
+
+    img {
+      width: 400%;
+      aspect-ratio: 1 / 1;
+    }
   }
 
   .button_delete {
@@ -45,6 +49,11 @@
 
     &:hover {
       background-color: colors.$delte-secondary;
+    }
+
+    img {
+      width: 400%;
+      aspect-ratio: 1 / 1;
     }
   }
 }

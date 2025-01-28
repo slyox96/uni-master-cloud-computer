@@ -10,7 +10,7 @@ type ModifyProductProps = {
 
 const ModifyProduct: React.FC<ModifyProductProps> = ({productId}) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.modify_container}>
       <button
         className={styles.button_edit}
         onClick={() => console.log(`edit ${productId}`)}

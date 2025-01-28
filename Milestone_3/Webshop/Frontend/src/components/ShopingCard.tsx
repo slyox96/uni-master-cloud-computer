@@ -36,13 +36,13 @@ const ShopingCard: React.FC<ShopingCardProps> = ({ product, isInCart }) => {
             <b>Price:</b> {calculatedPrice}$
           </span>
           {!isInCart ? (
-            <button
-              className={styles.add}
-              onClick={() => addToCart(product.id)}
-            >
-              Add to Cart
-            </button>
-            // <ModifyProduct productId={product.id}/>
+            // <button
+            //   className={styles.add}
+            //   onClick={() => addToCart(product.id)}
+            // >
+            //   Add to Cart
+            // </button>
+            <ModifyProduct productId={product.id}/>
           ) : (
             <Quantity productId={product.id} />
           )}
