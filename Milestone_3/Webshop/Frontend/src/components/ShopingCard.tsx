@@ -4,6 +4,7 @@ import styles from './ShopingCard.module.scss';
 
 import Quantity from './Quantity';
 import { useStore } from '../store/store';
+import ModifyProduct from './ModifyProduct';
 
 type ShopingCardProps = {
   product: Product;
@@ -41,6 +42,7 @@ const ShopingCard: React.FC<ShopingCardProps> = ({ product, isInCart }) => {
             >
               Add to Cart
             </button>
+            // <ModifyProduct productId={product.id}/>
           ) : (
             <Quantity productId={product.id} />
           )}
