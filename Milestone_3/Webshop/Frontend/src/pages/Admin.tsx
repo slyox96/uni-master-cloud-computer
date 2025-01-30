@@ -10,6 +10,7 @@ import ShopingCard from '../components/ShopingCard';
 import TestB from '../Test/TestB';
 import { useStore } from "../store/store";
 import Quantity from '../components/Quantity';
+import ModifyProduct from '../components/ModifyProduct';
 
 export const Admin = () => {
   const { products, isLoading, error, fetchProducts } = useStore();
@@ -54,7 +55,7 @@ export const Admin = () => {
     ) : (
       <div className={styles.product_List}>
         {products.map((product: Product) => (
-          <ShopingCard key={product.id} product={product} actionButtons={<Quantity productId={product.id} />} />
+          <ShopingCard key={product.id} product={product} actionButtons={<ModifyProduct productId={product.id} />} />
         ))}
       </div>
     )}

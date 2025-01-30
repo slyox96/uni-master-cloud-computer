@@ -18,7 +18,7 @@ const ShopingCard: React.FC<ShopingCardProps> = ({
 
   const cartItem = cart.find((item) => item.productId === product.id);
   const quantity = cartItem ? cartItem.quantity : 0;
-
+  
   // const calculatedPrice = isInCart
   //   ? (product.price * quantity).toFixed(2)
   //   : product.price.toFixed(2);
@@ -43,16 +43,6 @@ const ShopingCard: React.FC<ShopingCardProps> = ({
           <span>
             {/* <b>Price:</b> {calculatedPrice}$ */}
           </span>
-          {/* {!isInCart && (
-            <button
-              className={styles.add}
-              onClick={() => addToCart(product.id)}
-            >
-              Add to Cart
-            </button>
-          )}
-          {isAdmin && <ModifyProduct productId={product.id} />}
-          {isInCart && <Quantity productId={product.id} />} */}
           {actionButtons}
         </div>
       </div>
