@@ -2,6 +2,7 @@ import styles from "./Cart.module.scss";
 import ShopingCard from '../components/ShopingCard';
 import { useStore } from '../store/store';
 import { Product, CartItem } from '../types/Product';
+import Quantity from "../components/Quantity";
 
 export const Cart = () => {
   const { cart, products } = useStore();
@@ -19,11 +20,7 @@ export const Cart = () => {
           {cart.map((cartItem: CartItem) => {
             const product = getProductDetails(cartItem.productId);
             return product ? (
-              <ShopingCard
-                key={product.id}
-                product={product}
-                isInCart={true}
-              />
+              <ShopingCard key={product.id} product={product} actionButtons={<Quantity productId={product.id} />} />
             ) : (
               <p key={cartItem.productId}>Product not found</p>
             );
