@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+
+  database_django:
+    image: postgres:15
+    volumes:
+      - postgres_django:/var/lib/postgresql/data
+    env_file:
+      - .env
+    ports:
+      - "${DATABASE_PORT}:5432"
+
+volumes:
+  postgres_django:
