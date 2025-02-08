@@ -1,0 +1,45 @@
+@use "./variables.scss";
+
+button {
+    height: 2.5rem;
+    width: 7.5rem;
+    background-color: #3b9aff;
+}
+
+input {
+    height: 2.5rem;
+    width: 5rem;
+
+    color: #555;
+    background-color: #fff;
+
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+select {
+    height: 2.5rem;
+    width: 5rem;
+
+    color: #555;
+    background-color: #fff;
+
+    &:focus {
+        border-color: #3b9aff;
+        box-shadow: 0 0 5px rgba(59, 154, 255, 0.5);
+    }
+
+    option {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #666;
+
+        &:hover {
+            background-color: violet;
+        }
+    }
+}

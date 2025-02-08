@@ -1,0 +1,46 @@
+$image-size: 20rem;
+
+.card {
+    width: calc($image-size * 3);
+    height: $image-size;
+    background-color: white;
+    display: grid;
+    grid-template-columns: $image-size auto;
+
+    img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: $image-size;
+        height: $image-size;
+        object-fit: fill;
+    }
+
+    .information {
+        display: grid;
+        grid-template-rows: .5fr 2fr .5fr;
+        padding: 0 1rem;
+        color: black;
+
+        .title{
+            border-bottom: 1px solid black;
+        }
+
+        .description{
+            p{
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 6;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .buy{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: .5rem;
+        }
+    }
+}

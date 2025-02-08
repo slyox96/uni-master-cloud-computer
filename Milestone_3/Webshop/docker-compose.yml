@@ -1,64 +1,57 @@
-version: "3.8"
+
 services:
+  #backend:
+    #build:
+      #context: .
+      #dockerfile: Dockerfile
+    #container_name: django_app
+    #ports:
+    #  - "8000:8000"
+    #volumes:
+     # - .:/app
+    #env_file:
+    #  - .env
+    #depends_on:
+    #  - database
+
   backend:
     build:
-      context: ./Backend
+      context: .
       dockerfile: Dockerfile
+    container_name: django_app
     ports:
-      - "${BACKEND_PORT}:${BACKEND_PORT}"
+      - "8000:8000"
+    volumes:
+      - .:/app
     env_file:
       - .env
     depends_on:
       - database
+    
+
 
   database:
     image: postgres:15
     container_name: postgres_db
-    ports:
-      - "${DATABASE_PORT}:5432"
-    env_file:
-      - .env
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: webshop
     volumes:
-      - database_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"  # Fixed to standard port
 
-  # prisma-studio:
-  #   image: node:lts
-  #   working_dir: /app
-  #   volumes:
-  #     - ./Backend:/app
-  #     - ./.env:/app/.env
-  #   ports:
-  #     - "5555:5555"
-  #   command: >
-  #     sh -c "if [ ! -d node_modules ]; then npm install; fi && npx prisma studio --port 5555"
-  #   depends_on:
-  #     - database
-  #     - backend
-
-  # storage:
-  #   build:
-  #     context: ./Storage
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "${STORAGE_PORT}:${STORAGE_PORT}"
-  #   env_file:
-  #     - .env.docker
-  #   volumes:
-  #     - ./images/uploads:/app/src/uploads
-  #     - ./images/default:/app/src/default
-  #   environment:
-  #     - NODE_ENV=production
-
-  # frontend:
-  #   build:
-  #     context: ./Frontend
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "8080:80"
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     - backend
+  frontend:
+    build:
+      context: ./Frontend_1
+      dockerfile: Dockerfile
+    container_name: react_app
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
 
 volumes:
-  database_data:
+  postgres_data:
