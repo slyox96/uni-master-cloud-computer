@@ -20,7 +20,11 @@ export const Cart = () => {
           {cart.map((cartItem: CartItem) => {
             const product = getProductDetails(cartItem.productId);
             return product ? (
-              <ProductCard key={product.id} product={product} actionButtons={<Quantity productId={product.id} />} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                actionButtons={<Quantity productId={product.id} />}
+                isInCart={true} />
             ) : (
               <p key={cartItem.productId}>Product not found</p>
             );

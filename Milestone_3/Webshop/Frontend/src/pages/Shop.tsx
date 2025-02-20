@@ -58,7 +58,11 @@ export const Shop = () => {
       ) : (
         <div className={styles.product_List}>
           {products.map((product: Product) => (
-            <ProductCard key={product.id} product={product} actionButtons={<AddToCart productId={product.id} />} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              actionButtons={<AddToCart productId={product.id} />}
+              isInCart={false} />
           ))}
         </div>
       )}

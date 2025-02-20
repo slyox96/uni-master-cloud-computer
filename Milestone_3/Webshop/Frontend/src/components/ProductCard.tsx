@@ -2,26 +2,20 @@ import React, { ReactNode } from "react";
 import { Product } from "../types/Product";
 import styles from "./ProductCard.module.scss";
 
-import { useStore } from "../store/store";
+import ProductPrice from "./ProductPrice";
 
 
-type ShopingCardProps = {
-  product: Product;
+type ProductCardProps = {
+  product: Product,
+  isInCart: boolean,
   actionButtons: ReactNode
 };
 
-const ProductCard: React.FC<ShopingCardProps> = ({
+const ProductCard: React.FC<ProductCardProps> = ({
   product,
-  actionButtons
+  actionButtons,
+  isInCart  
 }) => {
-  const { cart, addToCart } = useStore();
-
-  const cartItem = cart.find((item) => item.productId === product.id);
-  const quantity = cartItem ? cartItem.quantity : 0;
-  
-  // const calculatedPrice = isInCart
-  //   ? (product.price * quantity).toFixed(2)
-  //   : product.price.toFixed(2);
 
   return (
     <div className={styles.card}>
@@ -39,13 +33,8 @@ const ProductCard: React.FC<ShopingCardProps> = ({
         <div className={styles.description}>
           <p>{product.description}</p>
         </div>
-        <div className={styles.buy}>
-          {/* <span>
-            <b>Price:</b> {calculatedPrice}$
-          </span> */}
-          <span>
-           <b>Price:</b> 12
-          </span>
+        <div className={styles.actions}>
+          <ProductPrice product={product} isInCart={isInCart} />
           {actionButtons}
         </div>
       </div>

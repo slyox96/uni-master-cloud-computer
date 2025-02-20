@@ -41,24 +41,28 @@ export const Admin = () => {
   };
   return (
     <>
-    <Modal ref={ModalRef}>
-      <div>{modalContent}</div>
-    </Modal>
-    <div className={styles.searchbar}>
-      <button onClick={(e) => openModal(e)}>Modal</button>
-      <CategoryDropdown />
-      <Dropdown />
+      <Modal ref={ModalRef}>
+        <div>{modalContent}</div>
+      </Modal>
+      <div className={styles.searchbar}>
+        <button onClick={(e) => openModal(e)}>Modal</button>
+        <CategoryDropdown />
+        <Dropdown />
 
-    </div>
-    {products.length === 0 ? (
-      <p>No products available</p>
-    ) : (
-      <div className={styles.product_List}>
-        {products.map((product: Product) => (
-          <ProductCard key={product.id} product={product} actionButtons={<ModifyProduct productId={product.id} />} />
-        ))}
       </div>
-    )}
-  </>
+      {products.length === 0 ? (
+        <p>No products available</p>
+      ) : (
+        <div className={styles.product_List}>
+          {products.map((product: Product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              actionButtons={<ModifyProduct productId={product.id} />}
+              isInCart={false} />
+          ))}
+        </div>
+      )}
+    </>
   )
 }
