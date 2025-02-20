@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Product } from "../types/Product";
-import styles from "./ShopingCard.module.scss";
+import styles from "./ProductCard.module.scss";
 
 import { useStore } from "../store/store";
 
@@ -10,7 +10,7 @@ type ShopingCardProps = {
   actionButtons: ReactNode
 };
 
-const ShopingCard: React.FC<ShopingCardProps> = ({
+const ProductCard: React.FC<ShopingCardProps> = ({
   product,
   actionButtons
 }) => {
@@ -40,8 +40,11 @@ const ShopingCard: React.FC<ShopingCardProps> = ({
           <p>{product.description}</p>
         </div>
         <div className={styles.buy}>
+          {/* <span>
+            <b>Price:</b> {calculatedPrice}$
+          </span> */}
           <span>
-            {/* <b>Price:</b> {calculatedPrice}$ */}
+           <b>Price:</b> 12
           </span>
           {actionButtons}
         </div>
@@ -50,4 +53,4 @@ const ShopingCard: React.FC<ShopingCardProps> = ({
   );
 };
 
-export default ShopingCard;
+export default ProductCard;

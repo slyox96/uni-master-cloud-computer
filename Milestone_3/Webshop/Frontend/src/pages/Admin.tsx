@@ -6,7 +6,7 @@ import { toggleModal } from '../util/toggleModal';
 import CategoryDropdown from '../components/search/CategoryDropdown';
 import { Dropdown } from '../components/search/Dropdown';
 import { Product } from '../types/Product';
-import ShopingCard from '../components/ShopingCard';
+import ProductCard from '../components/ProductCard';
 import TestB from '../Test/TestB';
 import { useStore } from "../store/store";
 import Quantity from '../components/Quantity';
@@ -55,7 +55,7 @@ export const Admin = () => {
     ) : (
       <div className={styles.product_List}>
         {products.map((product: Product) => (
-          <ShopingCard key={product.id} product={product} actionButtons={<ModifyProduct productId={product.id} />} />
+          <ProductCard key={product.id} product={product} actionButtons={<ModifyProduct productId={product.id} />} />
         ))}
       </div>
     )}

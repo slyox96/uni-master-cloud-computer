@@ -5,13 +5,12 @@ import { Product } from "../types/Product";
 
 import styles from "./Shop.module.scss";
 
-import ShopingCard from "../components/ShopingCard";
+import ProductCard from "../components/ProductCard";
 import { Modal } from "../components/Modal";
 import { toggleModal } from "../util/toggleModal";
 import CategoryDropdown from "../components/search/CategoryDropdown";
 import { Dropdown } from "../components/search/Dropdown";
 import TestB from "../Test/TestB";
-import Quantity from "../components/Quantity";
 import AddToCart from "../components/AddToCard";
 
 
@@ -59,7 +58,7 @@ export const Shop = () => {
       ) : (
         <div className={styles.product_List}>
           {products.map((product: Product) => (
-            <ShopingCard key={product.id} product={product} actionButtons={<AddToCart productId={product.id} />} />
+            <ProductCard key={product.id} product={product} actionButtons={<AddToCart productId={product.id} />} />
           ))}
         </div>
       )}
