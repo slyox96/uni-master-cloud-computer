@@ -3,6 +3,7 @@ import ProductCard from '../components/ProductCard';
 import { useStore } from '../store/store';
 import { Product, CartItem } from '../types/Product';
 import Quantity from "../components/Quantity";
+import CartPrice from "./CartPrice";
 
 export const Cart = () => {
   const { cart, products } = useStore();
@@ -32,7 +33,7 @@ export const Cart = () => {
         </div>
       )}
       <div className={styles.buybar}>
-
+        <CartPrice />
       </div>
     </>
   );
