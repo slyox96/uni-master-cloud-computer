@@ -4,7 +4,6 @@ import { useStore } from '../store/store';
 const CartPrice = () => {
     const { cart, products } = useStore();
     
-    // Berechnung des Gesamtpreises mit Sicherheitsprüfungen
     const totalPrice = cart.reduce((sum, item) => {
         const product = products.find((product)=> product.id === item.productId );
         const quantity = Number(item.quantity) || 0;

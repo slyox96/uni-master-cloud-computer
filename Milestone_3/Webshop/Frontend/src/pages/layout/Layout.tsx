@@ -4,6 +4,7 @@ import { TopBar } from "../../components/TopBar";
 import { Drawer } from "../../components/Drawer";
 
 import styles from "./Layout.module.scss";
+import Modal from "../../components/Modal/Modal";
 
 const Layout: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const Layout: React.FC = () => {
       <div className={styles.content_container}>
         <Outlet />
       </div>
+      <Modal />
     </div>
 
   );

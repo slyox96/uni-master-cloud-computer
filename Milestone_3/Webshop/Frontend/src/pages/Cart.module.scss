@@ -2,14 +2,6 @@
 
 $buybar-height: 5rem;
 
-.buybar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: $buybar-height;
-    background-color: lightblue;
-}
-
 .product_List {
     margin-top: 1rem;
     margin-left: 5rem;
@@ -20,4 +12,15 @@ $buybar-height: 5rem;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.buybar {
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - variables.$drawer-width);
+    height: $buybar-height;
+    background-color: rgb(156, 27, 168);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

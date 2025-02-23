@@ -12,6 +12,7 @@ import CategoryDropdown from "../components/search/CategoryDropdown";
 import { Dropdown } from "../components/search/Dropdown";
 import TestB from "../Test/TestB";
 import AddToCart from "../components/AddToCard";
+import { useModalStore } from "../hooks/useModalStore";
 
 
 export const Shop = () => {
@@ -19,6 +20,8 @@ export const Shop = () => {
   const [modalContent, setModalContent] = useState<ReactElement | null>(null);
 
   const ModalRef = useRef(null);
+
+  const { openModal } = useModalStore();
 
   useEffect(() => {
     fetchProducts();
@@ -36,19 +39,19 @@ export const Shop = () => {
   //     console.log(`Min price: ${minPrice}, Max price: ${maxPrice}`);
   // }
 
-  const openModal = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setModalContent(<TestB />);
-    toggleModal(ModalRef);
-  };
+  // const openModal = (e: React.MouseEvent) => {
+  //   e.stopPropagation();
+  //   setModalContent(<TestB />);
+  //   toggleModal(ModalRef);
+  // };
 
   return (
     <>
-      <Modal ref={ModalRef}>
+      {/* <Modal ref={ModalRef}>
         <div>{modalContent}</div>
-      </Modal>
+      </Modal> */}
       <div className={styles.searchbar}>
-        <button onClick={(e) => openModal(e)}>Modal</button>
+        <button onClick={() => openModal(<TestB />)}>Modal</button>
         <CategoryDropdown />
         <Dropdown />
 

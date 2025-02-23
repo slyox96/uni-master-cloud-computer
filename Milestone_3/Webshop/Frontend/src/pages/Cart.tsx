@@ -34,6 +34,7 @@ export const Cart = () => {
       )}
       <div className={styles.buybar}>
         <CartPrice />
+        <button>Klick</button>
       </div>
     </>
   );
