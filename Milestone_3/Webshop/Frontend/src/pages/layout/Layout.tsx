@@ -5,6 +5,7 @@ import { Drawer } from "../../components/Drawer";
 
 import styles from "./Layout.module.scss";
 import Modal from "../../components/Modal/Modal";
+import Toast from "../../components/Toast";
 
 const Layout: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const Layout: React.FC = () => {
         <Outlet />
       </div>
       <Modal />
+      <Toast />
     </div>
 
   );
