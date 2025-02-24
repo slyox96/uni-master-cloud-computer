@@ -1,9 +1,6 @@
 from django.db import models
 from django.utils import timezone
 
-
-    
-
 # Enum-like choices for OrderStatus
 class OrderStatus(models.TextChoices):
     PENDING = 'PENDING'
@@ -16,25 +13,19 @@ class PaymentMethod(models.TextChoices):
     PAYPAL = 'PAYPAL'
     BANK_TRANSFER = 'BANK_TRANSFER'
 
-# Enum-like choices for Category
-class Category(models.TextChoices):
-    SHIRT = 'Shirt'
-    PANT = 'Pant'
-    SHOE = 'Shoe'
-    ACCESSORY = 'Accessory'
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.FloatField()
     stock = models.IntegerField(default=0)
-    category = models.CharField(max_length=50, choices=Category.choices, default=Category.SHIRT)
-    image = models.CharField(max_length=255, default="http://example.com/placeholder.jpg")
-    
-
-    # Reverse relationships
-    orders = models.ManyToManyField('Order', through='OrderItem', related_name='products')
-    order_items = models.ManyToManyField('OrderItem', related_name='products')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE) 
+    image = models.ImageField(upload_to='products/', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -44,7 +35,6 @@ class Order(models.Model):
     totalAmount = models.FloatField()
     status = models.CharField(max_length=20, choices=OrderStatus.choices, default=OrderStatus.PENDING)
     paymentMethod = models.CharField(max_length=20, choices=PaymentMethod.choices)
-    
 
     def __str__(self):
         return self.orderNumber

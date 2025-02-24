@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-
   database_django:
     image: postgres:15
     container_name: postgres_db
@@ -28,7 +27,8 @@ services:
       - .env
     depends_on:
       database_django:
-        condition: service_healthy  # Wait for PostgreSQL to be ready
+        condition: service_healthy
+    command: ["sh", "-c", "/app/init_superuser.sh && python manage.py runserver 0.0.0.0:8000"]
 
 volumes:
   postgres_django:

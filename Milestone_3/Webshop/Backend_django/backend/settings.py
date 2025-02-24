@@ -18,13 +18,17 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #new added
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB', 'webshop'),  
+        'NAME': os.getenv('POSTGRES_DB', 'webshop'),  # Use env variable
         'USER': os.getenv('POSTGRES_USER', 'admin'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'password'),
-        'HOST': os.getenv('DB_HOST', 'database_django'),
+        'HOST': os.getenv('DB_HOST', 'database_django'),  # Match docker-compose service name
         'PORT': os.getenv('DATABASE_PORT', '5432'),
     }
 }
