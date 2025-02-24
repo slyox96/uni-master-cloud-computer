@@ -28,7 +28,7 @@ DATABASES = {
         'NAME': os.getenv('POSTGRES_DB', 'webshop'),  # Use env variable
         'USER': os.getenv('POSTGRES_USER', 'admin'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'password'),
-        'HOST': os.getenv('DB_HOST', 'database_django'),  # Match docker-compose service name
+        'HOST': os.getenv('DB_HOST', 'database_django'),
         'PORT': os.getenv('DATABASE_PORT', '5432'),
     }
 }

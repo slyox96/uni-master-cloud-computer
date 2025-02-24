@@ -16,10 +16,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the project files
 COPY Backend_django /app
-RUN chmod +x /app/init_superuser.sh
+RUN chmod +x /app/init.sh
 
 # Expose the port Django runs on
 EXPOSE 8000
 
 # Run makemigrations, migrate, then create the superuser and start the Django server
-CMD ["sh", "-c", "/app/init_superuser.sh && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+CMD ["sh", "-c", "/app/init.sh && python manage.py runserver 0.0.0.0:8000"]

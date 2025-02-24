@@ -28,7 +28,7 @@ services:
     depends_on:
       database_django:
         condition: service_healthy
-    command: ["sh", "-c", "/app/init_superuser.sh && python manage.py runserver 0.0.0.0:8000"]
+    command: ["sh", "-c", "/app/init.sh && python manage.py runserver 0.0.0.0:8000"]
 
 volumes:
   postgres_django:
