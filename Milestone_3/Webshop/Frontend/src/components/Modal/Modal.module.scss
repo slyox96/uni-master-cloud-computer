@@ -1,0 +1,19 @@
+dialog {
+    padding: 0;
+    border: none;
+    background-color: white;
+    color: black;
+  
+    &::backdrop {
+      background-color: black;
+      opacity: 0.9;
+    }
+  
+    .content_dialog {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+    }
+  }
+  
