@@ -6,12 +6,12 @@ import { Product } from "../types/Product";
 import styles from "./Shop.module.scss";
 
 import ProductCard from "../components/ProductCard";
-import { Modal } from "../components/Modal";
+import { Modal } from "../components/Ui/Modal";
 import { toggleModal } from "../util/toggleModal";
 import CategoryDropdown from "../components/search/CategoryDropdown";
 import { Dropdown } from "../components/search/Dropdown";
 import TestB from "../Test/TestB";
-import AddToCart from "../components/AddToCard";
+import AddToCart from "../components/ActionButtons/AddToCard";
 import { useModalStore } from "../hooks/useModalStore";
 
 

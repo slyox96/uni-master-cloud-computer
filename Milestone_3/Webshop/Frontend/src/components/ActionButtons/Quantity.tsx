@@ -1,10 +1,10 @@
 import React from "react";
-import plus from "../assets/plus-solid.svg";
-import minus from "../assets/minus-solid.svg";
-import trash from "../assets/trash-solid.svg";
+import plus from "../../assets/plus-solid.svg";
+import minus from "../../assets/minus-solid.svg";
+import trash from "../../assets/trash-solid.svg";
 
 import styles from './Quantity.module.scss';
-import { useStore } from "../store/store";
+import { useStore } from "../../store/store";
 
 type QuantityProps = {
   productId: number;

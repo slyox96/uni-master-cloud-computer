@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./AddToCart.module.scss";
-import { useStore } from "../store/store";
+import { useStore } from "../../store/store";
 
 type AddToCartProps = {
   productId: number;

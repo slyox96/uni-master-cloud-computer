@@ -2,7 +2,7 @@ import styles from "./Cart.module.scss";
 import ProductCard from '../components/ProductCard';
 import { useStore } from '../store/store';
 import { Product, CartItem } from '../types/Product';
-import Quantity from "../components/Quantity";
+import Quantity from "../components/ActionButtons/Quantity";
 import CartPrice from "./CartPrice";
 
 export const Cart = () => {

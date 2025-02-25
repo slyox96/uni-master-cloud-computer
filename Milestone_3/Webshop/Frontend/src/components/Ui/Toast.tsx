@@ -1,4 +1,4 @@
-import { useToastStore } from "../hooks/useToastStore";
+import { useToastStore } from "../../hooks/useToastStore";
 import styles from "./Toast.module.scss";
 import { useEffect } from "react";
 

@@ -7,7 +7,7 @@ import { Product } from '../types/Product';
 import ProductCard from '../components/ProductCard';
 import TestB from '../Test/TestB';
 import { useStore } from "../store/store";
-import ModifyProduct from '../components/ModifyProduct';
+import ModifyProduct from '../components/ActionButtons/ModifyProduct';
 
 export const Admin = () => {
   const { products, isLoading, error, fetchProducts } = useStore();
@@ -32,19 +32,35 @@ export const Admin = () => {
         <CategoryDropdown />
         <Dropdown />
       </div>
-      {products.length === 0 ? (
-        <p>No products available</p>
-      ) : (
-        <div className={styles.product_List}>
-          {products.map((product: Product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              actionButtons={<ModifyProduct productId={product.id} />}
-              isInCart={false} />
-          ))}
-        </div>
-      )}
+      <div className={styles.container}>
+        {products.length === 0 ? (
+          <p>No products available</p>
+        ) : (
+          <div className={styles.product_List}>
+            {products.map((product: Product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                actionButtons={<ModifyProduct productId={product.id} />}
+                isInCart={false} />
+            ))}
+          </div>
+        )}
+        {products.length === 0 ? (
+          <p>No products available</p>
+        ) : (
+          <div className={styles.product_List}>
+            {products.map((product: Product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                actionButtons={<ModifyProduct productId={product.id} />}
+                isInCart={false} />
+            ))}
+          </div>
+        )}
+      </div>
+
     </>
   )
 }
