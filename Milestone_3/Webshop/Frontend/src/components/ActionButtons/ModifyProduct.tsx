@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./ModifyProduct.module.scss"
 
-import deleteIcon from "../assets/delete.svg";
-import editIcon from "../assets/edit.svg";
-import { useToastStore } from "../hooks/useToastStore";
+import deleteIcon from "../../assets/delete.svg";
+import editIcon from "../../assets/edit.svg";
+import { useToastStore } from "../../hooks/useToastStore";
 
 type ModifyProductProps = {
     productId: number

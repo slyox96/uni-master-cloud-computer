@@ -1,6 +1,6 @@
 import React, { forwardRef, RefObject } from 'react';
 import styles from './Modal.module.scss';
-import {toggleModal} from '../util/toggleModal'
+import {toggleModal} from '../../util/toggleModal'
 
 interface ModalProps {
     children: React.ReactNode;

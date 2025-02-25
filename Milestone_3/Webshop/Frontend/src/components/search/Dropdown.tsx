@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./Dropdown.module.scss";
-import { Category } from "../../types/Product";
+import { useStore } from "../../store/store";
 
 export const Dropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("Bitte wählen");
+
+  const { categories, isLoadingCategories, error } = useStore();
+
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const options = ['All', ...Object.values(Category)];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -25,6 +27,14 @@ export const Dropdown: React.FC = () => {
     };
   }, []);
 
+  if (isLoadingCategories) {
+    return <div>Loading categories...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div className={styles.dropdown} ref={dropdownRef}>
       <div
@@ -35,16 +45,16 @@ export const Dropdown: React.FC = () => {
       </div>
       {isOpen && (
         <ul className={styles.options}>
-          {options.map((option, index) => (
+          {categories.map((category) => (
             <li
-              key={index}
+              key={category.id}
               className={styles.option}
               onClick={() => {
-                setSelected(option);
+                setSelected(category.name);
                 setIsOpen(false);
               }}
             >
-              {option}
+              {category.name}
             </li>
           ))}
         </ul>

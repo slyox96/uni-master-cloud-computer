@@ -1,29 +1,38 @@
-import React, { useState } from 'react';
-import { Category } from '../../types/Product';
+import React, { useEffect, useState } from 'react';
 import styles from './CategoryDropdown.module.scss';
+import { useStore } from '../../store/store';
+import { } from "../../types/Product";
 
 const CategoryDropdown: React.FC = () => {
-    
-    const [selectedCategory, setSelectedCategory] = useState<Category>(Category.All);
+    const { categories, isLoadingCategories, error } = useStore();
 
-    // Funktion zur Handhabung der Auswahländerung
+    const [selectedCategory, setSelectedCategory] = useState<string>("All");
+
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const value = e.target.value as Category;
+        const value = e.target.value;
         setSelectedCategory(value);
     };
 
+    if (isLoadingCategories) {
+        return <div>Loading categories...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
     return (
-        <div >
+        <div>
             <select
                 id="category"
                 value={selectedCategory}
                 onChange={handleChange}
                 className={styles.select}
-                defaultValue={'All'}
             >
-                {Object.values(Category).map((category) => (
-                    <option key={category} value={category}>
-                        {category}
+                <option value="All">All</option>
+                {categories.map((category) => (
+                    <option key={category.id} value={category.id}>
+                        {category.name}
                     </option>
                 ))}
             </select>

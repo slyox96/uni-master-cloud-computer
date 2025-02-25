@@ -1,15 +1,36 @@
 version: '3.8'
 
 services:
-
   database_django:
     image: postgres:15
+    container_name: postgres_db
     volumes:
       - postgres_django:/var/lib/postgresql/data
     env_file:
       - .env
     ports:
-      - "${DATABASE_PORT}:5432"
+      - "${DATABASE_PORT:-5432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./Backend_django/Dockerfile
+    container_name: django_app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      database_django:
+        condition: service_healthy
+    volumes:
+      - ./Backend_django:/app
+    command: ["sh", "-c", "/app/init.sh && python manage.py runserver 0.0.0.0:8000"]
 
 volumes:
   postgres_django:

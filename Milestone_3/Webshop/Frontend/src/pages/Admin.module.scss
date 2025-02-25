@@ -1,5 +1,6 @@
 @use "../scss/variables.scss";
-
+@use "../scss/colors.scss";
+@use "../scss/scrollbar.scss" as scrollbar;
 
 $searchbar-height: 5rem;
 
@@ -14,13 +15,41 @@ $searchbar-height: 5rem;
     gap: 0.5rem;
 }
 
-.product_List {
-    margin-top: calc($searchbar-height + 1rem);
-    margin-left: 5rem;
-    margin-right: 5rem;
-    // background-color: lightcoral;
+.container {
+    height: 100%; /* Ganze Bildschirmhöhe */
+    width: 100%;
+    background-color: blueviolet;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    flex-direction: row; /* Damit sich die Liste unterhalb der Searchbar anpasst */
+
+    .product_List {
+        margin-top: calc($searchbar-height + 1rem);
+        margin-left: 5rem;
+        margin-right: 5rem;
+        background-color: lightcoral;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        max-height: calc(100vh - variables.$topbar-height - $searchbar-height - 2rem); /* Berechnete Höhe */
+        overflow-y: auto;
+        padding-right: 10px; /* Abstand für Scrollbar */
+
+        @include scrollbar.custom-scrollbar(colors.$primary, colors.$secondary, #ffe0e0);
+    }
+
+    .category_List {
+        width: 70%;
+        margin-top: calc($searchbar-height + 1rem);
+        margin-left: 5rem;
+        margin-right: 5rem;
+        background-color: lightcoral;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        max-height: calc(100vh - variables.$topbar-height - $searchbar-height - 2rem); /* Berechnete Höhe */
+        overflow-y: auto;
+        padding-right: 10px; /* Abstand für Scrollbar */
+
+        @include scrollbar.custom-scrollbar(colors.$primary, colors.$secondary, #ffe0e0);
+    }
 }

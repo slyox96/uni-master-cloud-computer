@@ -1,9 +1,7 @@
-export enum Category {
-    Shirt = "Shirt",
-    Pant = "Pant",
-    Shoe = "Shoe",
-    Accessory = "Accessory",
-  }
+export interface Category {
+  id: number;
+  name: string;
+}
   
   export interface Product {
     id: number;
