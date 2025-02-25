@@ -1,60 +1,40 @@
-import React, { ReactElement, useEffect, useRef, useState } from "react";
-
+import React, { useEffect } from "react";
 import { useStore } from "../store/store";
 import { Product } from "../types/Product";
-
 import styles from "./Shop.module.scss";
-
 import ProductCard from "../components/ProductCard";
-import { Modal } from "../components/Ui/Modal";
-import { toggleModal } from "../util/toggleModal";
 import CategoryDropdown from "../components/search/CategoryDropdown";
 import { Dropdown } from "../components/search/Dropdown";
 import TestB from "../Test/TestB";
 import AddToCart from "../components/ActionButtons/AddToCard";
 import { useModalStore } from "../hooks/useModalStore";
 
-
 export const Shop = () => {
-  const { products, isLoading, error, fetchProducts } = useStore();
-  const [modalContent, setModalContent] = useState<ReactElement | null>(null);
-
-  const ModalRef = useRef(null);
+  const { products, isLoadingProducts, error, fetchProducts } = useStore(); // Verwenden des isLoadingProducts
 
   const { openModal } = useModalStore();
 
+  // Produkte beim Laden der Seite holen
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  // Ladeanzeige anzeigen, wenn Produkte geladen werden
+  if (isLoadingProducts) {
+    return <div>Loading products...</div>; // Anpassbare Ladeanzeige für Produkte
   }
 
+  // Fehleranzeige, falls es einen Fehler beim Abrufen gibt
   if (error) {
     return <div>Error: {error}</div>;
   }
 
-  // const handlePriceChange = (minPrice: number, maxPrice: number) => {
-  //     console.log(`Min price: ${minPrice}, Max price: ${maxPrice}`);
-  // }
-
-  // const openModal = (e: React.MouseEvent) => {
-  //   e.stopPropagation();
-  //   setModalContent(<TestB />);
-  //   toggleModal(ModalRef);
-  // };
-
   return (
     <>
-      {/* <Modal ref={ModalRef}>
-        <div>{modalContent}</div>
-      </Modal> */}
       <div className={styles.searchbar}>
         <button onClick={() => openModal(<TestB />)}>Modal</button>
         <CategoryDropdown />
         <Dropdown />
-
       </div>
       {products.length === 0 ? (
         <p>No products available</p>
@@ -65,7 +45,8 @@ export const Shop = () => {
               key={product.id}
               product={product}
               actionButtons={<AddToCart productId={product.id} />}
-              isInCart={false} />
+              isInCart={false}
+            />
           ))}
         </div>
       )}

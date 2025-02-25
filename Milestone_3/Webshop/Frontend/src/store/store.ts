@@ -4,15 +4,18 @@ import { removeFromCart } from "./actions/removeFromCart";
 import { clearCart } from "./actions/clearCart";
 import { incrementQuantity } from "./actions/incrementQuantity";
 import { decrementQuantity } from "./actions/decrementQuantity";
-import { Product, CartItem } from "../types/Product";
+import { Product, CartItem, Category } from "../types/Product";
 import ApiService from "../api/ApiService";
 
 interface StoreState {
   products: Product[];
   cart: CartItem[];
-  isLoading: boolean;
+  categories: Category[];
+  isLoadingProducts: boolean;
+  isLoadingCategories: boolean;
   error: string | null;
   fetchProducts: () => Promise<void>;
+  fetchCategories: () => Promise<void>;
   addToCart: (productId: number, quantity?: number) => void;
   removeFromCart: (productId: number) => void;
   incrementQuantity: (productId: number, incrementBy?: number) => void;
@@ -23,20 +26,37 @@ interface StoreState {
 export const useStore = create<StoreState>((set) => ({
   products: [],
   cart: [],
-  isLoading: false,
+  categories: [],
+  isLoadingProducts: false,
+  isLoadingCategories: false,
   error: null,
 
   fetchProducts: async () => {
-    set({ isLoading: true, error: null });
+    set({ isLoadingProducts: true, error: null });
     try {
       const data = await ApiService.get("/products");
       const products = data as Product[];
-      set({ products, isLoading: false });
+      set({ products, isLoadingProducts: false });
     } catch (error) {
       if (error instanceof Error) {
-        set({ error: error.message, isLoading: false });
+        set({ error: error.message, isLoadingProducts: false });
       } else {
-        set({ error: "An unknown error occurred", isLoading: false });
+        set({ error: "An unknown error occurred", isLoadingProducts: false });
+      }
+    }
+  },
+
+  fetchCategories: async () => {
+    set({ isLoadingCategories: true, error: null });
+    try {
+      const data = await ApiService.get("/categories");
+      const categories = data as Category[];
+      set({ categories, isLoadingCategories: false });
+    } catch (error) {
+      if (error instanceof Error) {
+        set({ error: error.message, isLoadingCategories: false });
+      } else {
+        set({ error: "An unknown error occurred", isLoadingCategories: false });
       }
     }
   },
