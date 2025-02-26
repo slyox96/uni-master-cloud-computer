@@ -1,0 +1,13 @@
+$card-size: 70%;
+
+.card {
+    width: $card-size;
+    height: 2rem;
+    background-color: white;
+    display: flex;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}

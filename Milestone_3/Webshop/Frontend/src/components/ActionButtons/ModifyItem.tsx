@@ -1,24 +1,25 @@
 import React from "react";
-import styles from "./ModifyProduct.module.scss"
+import styles from "./ModifyItem.module.scss"
 
 import deleteIcon from "../../assets/delete.svg";
 import editIcon from "../../assets/edit.svg";
 import { useToastStore } from "../../hooks/useToastStore";
 
-type ModifyProductProps = {
-    productId: number
+type ModifyItemProps = {
+  ItemId: number
 }
 
-const ModifyProduct: React.FC<ModifyProductProps> = ({productId}) => {
+const ModifyItem: React.FC<ModifyItemProps> = ({ ItemId }) => {
   const { showToast } = useToastStore();
 
-  
+
   return (
     <div className={styles.modify_container}>
       <button
-        className={styles.button_edit}
+        type="button"
+        className={`${styles.button} ${styles.delete}`}
         onClick={() => {
-          console.log(`edit ${productId}`);
+          console.log(`edit ${ItemId}`);
           showToast("🎉 Erfolgreich gespeichert!");
         }
         }
@@ -26,8 +27,9 @@ const ModifyProduct: React.FC<ModifyProductProps> = ({productId}) => {
         <img src={editIcon} alt="Edit"></img>
       </button>
       <button
-        className={styles.button_delete}
-        onClick={() => console.log(`delete ${productId}`)}
+        type="button"
+        className={`${styles.button} ${styles.edit}`}
+        onClick={() => console.log(`delete ${ItemId}`)}
       >
         <img src={deleteIcon} alt="Delete"></img>
       </button>
@@ -35,4 +37,4 @@ const ModifyProduct: React.FC<ModifyProductProps> = ({productId}) => {
   );
 };
 
-export default ModifyProduct;
+export default ModifyItem;

@@ -1,5 +1,20 @@
-.container{
-    height: 100%;
-    width: 100%;
-    background-color: red;
+@use "../scss/variables.scss";
+@use "../scss/colors.scss";
+@use "../scss/scrollbar.scss" as scrollbar;
+
+$searchbar-height: 5rem;
+
+.container {
+    width: 70%;
+    margin-top: calc($searchbar-height + 1rem);
+    max-height: calc(100vh - variables.$topbar-height - $searchbar-height - 2rem);
+    overflow-y: auto;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    background-color: lightcoral;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    @include scrollbar.custom-scrollbar(colors.$primary, colors.$secondary, #ffe0e0);
 }
