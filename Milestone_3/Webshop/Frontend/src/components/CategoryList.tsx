@@ -9,7 +9,6 @@ const CategoryList: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Categories</h2>
       {isLoadingCategories ? (
         <p>Loading categories...</p>
       ) : categories.length === 0 ? (

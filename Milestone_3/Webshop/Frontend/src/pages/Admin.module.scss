@@ -15,7 +15,27 @@
 }
 
 .container {
-    margin-top: calc(variables.$searchbar-height + 1rem);
+    height: calc(100vh - variables.$topbar-height - variables.$searchbar-height);
+    margin-top: variables.$searchbar-height;
+    background-color: lightcoral;
+    overflow-y: auto;
     display: flex;
-    flex-direction: row;
+    gap: 1rem;
+
+    .categories {
+        flex: 1;
+        background-color: green;
+        overflow-y: auto;
+        max-height: 100%;
+        @include scrollbar.custom-scrollbar(colors.$primary, colors.$secondary, #ffe0e0);
+    }
+
+    .products {
+        flex: 2;
+        background-color: blue;
+        overflow-y: auto;
+        max-height: 100%;
+        @include scrollbar.custom-scrollbar(colors.$primary, colors.$secondary, #ffe0e0);
+    }
+
 }

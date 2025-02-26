@@ -50,11 +50,18 @@ export const Admin = () => {
         <CategoryDropdown />
         <Dropdown />
       </div>
-      <ProductList
-        isInCart={false}
-        actionButtons={(product) => <ModifyItem ItemId={product.id} />}
-      />
-      <CategoryList />
+      <div className={styles.container}>
+        <div className={styles.categories}>
+          <CategoryList />
+        </div>
+        <div className={styles.products}>
+          <ProductList
+            isInCart={false}
+            actionButtons={(product) => <ModifyItem ItemId={product.id} />}
+          />
+        </div>
+
+      </div>
     </>
   );
 };

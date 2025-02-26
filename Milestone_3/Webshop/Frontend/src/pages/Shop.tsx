@@ -26,18 +26,18 @@ export const Shop = () => {
   }
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.searchbar}>
         <button onClick={() => openModal(<TestB />)}>Modal</button>
         <CategoryDropdown />
         <Dropdown />
       </div>
-      <div className={styles.container}>
+      <div className={styles.products}>
         <ProductList
           isInCart={false}
           actionButtons={(product) => <AddToCart productId={product.id} />}
         />
       </div>
-    </>
+    </div>
   );
 };
