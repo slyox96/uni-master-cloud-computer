@@ -1,37 +1,34 @@
-import React from "react";
-import styles from "./ModifyItem.module.scss"
+import React, { ReactNode } from "react";
+import styles from "./ModifyItem.module.scss";
 
 import deleteIcon from "../../assets/delete.svg";
 import editIcon from "../../assets/edit.svg";
-import { useToastStore } from "../../hooks/useToastStore";
+import { useModalStore } from "../../hooks/useModalStore";
 
 type ModifyItemProps = {
-  ItemId: number
-}
+  editForm: ReactNode;
+  deleteForm: ReactNode;
+};
 
-const ModifyItem: React.FC<ModifyItemProps> = ({ ItemId }) => {
-  const { showToast } = useToastStore();
-
+const ModifyItem: React.FC<ModifyItemProps> = ({ editForm, deleteForm }) => {
+  const { openModal } = useModalStore();
 
   return (
     <div className={styles.modify_container}>
       <button
         type="button"
-        className={`${styles.button} ${styles.delete}`}
-        onClick={() => {
-          console.log(`edit ${ItemId}`);
-          showToast("🎉 Erfolgreich gespeichert!");
-        }
-        }
+        className={`${styles.button} ${styles.edit}`}
+        onClick={() => openModal(editForm)}
       >
-        <img src={editIcon} alt="Edit"></img>
+        <img src={editIcon} alt="Edit" />
       </button>
+
       <button
         type="button"
-        className={`${styles.button} ${styles.edit}`}
-        onClick={() => console.log(`delete ${ItemId}`)}
+        className={`${styles.button} ${styles.delete}`}
+        onClick={() => openModal(deleteForm)}
       >
-        <img src={deleteIcon} alt="Delete"></img>
+        <img src={deleteIcon} alt="Delete" />
       </button>
     </div>
   );

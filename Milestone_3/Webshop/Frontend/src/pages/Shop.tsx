@@ -4,7 +4,7 @@ import styles from "./Shop.module.scss";
 import CategoryDropdown from "../components/search/CategoryDropdown";
 import { Dropdown } from "../components/search/Dropdown";
 import TestB from "../Test/TestB";
-import AddToCart from "../components/ActionButtons/AddToCart";
+import AddToCart from "../components/actionButtons/AddToCart";
 import { useModalStore } from "../hooks/useModalStore";
 import ProductList from "../components/ProductList";
 

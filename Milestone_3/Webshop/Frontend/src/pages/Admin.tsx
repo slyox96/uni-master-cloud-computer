@@ -9,8 +9,9 @@ import { useStore } from "../store/store";
 import { useModalStore } from '../hooks/useModalStore';
 import TestB from '../Test/TestB';
 import CategoryList from '../components/CategoryList';
-import ModifyItem from '../components/ActionButtons/ModifyItem';
+import ModifyItem from '../components/actionButtons/ModifyItem';
 import ProductList from '../components/ProductList';
+import { DeleteProductForm } from '../components/forms/DeleteProductForm';
 
 export const Admin = () => {
   const {
@@ -57,7 +58,7 @@ export const Admin = () => {
         <div className={styles.products}>
           <ProductList
             isInCart={false}
-            actionButtons={(product) => <ModifyItem ItemId={product.id} />}
+            actionButtons={(product) => <ModifyItem editForm={<DeleteProductForm product={product} />} deleteForm={<DeleteProductForm product={product} />}  />}
           />
         </div>
 

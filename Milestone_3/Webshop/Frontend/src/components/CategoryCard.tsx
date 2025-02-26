@@ -1,7 +1,8 @@
 import React from 'react'
 import { Category } from '../types/Product';
 import styles from "./CategoryCard.module.scss";
-import ModifyItem from './ActionButtons/ModifyItem';
+import ModifyItem from './actionButtons/ModifyItem';
+import { DeleteProductForm } from './forms/DeleteProductForm';
 
 type CategoryCard = {
     category: Category
@@ -11,7 +12,7 @@ const CategoryCard: React.FC<CategoryCard> = ({ category }) => {
     return (
         <div className={styles.card}>
             <b>{category.name}</b>
-            <ModifyItem ItemId={category.id} />
+            {/* <ModifyItem editForm={<DeleteProductForm product={undefined} />} deleteForm={undefined} /> */}
         </div>
     )
 }
