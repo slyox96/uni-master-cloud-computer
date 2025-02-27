@@ -14,9 +14,13 @@ const CategoryList: React.FC = () => {
       ) : categories.length === 0 ? (
         <p>No categories available</p>
       ) : (
-        categories.map((category: Category) => (
-          <CategoryCard key={category.id} category={category} />
-        ))
+        <ul className={styles.category_list}>
+          {categories.map((category: Category) => (
+            <li key={category.id}>
+              <CategoryCard key={category.id} category={category} />
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );

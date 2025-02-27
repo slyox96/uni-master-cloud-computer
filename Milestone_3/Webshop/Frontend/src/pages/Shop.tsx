@@ -1,21 +1,20 @@
 import React, { useEffect } from "react";
 import { useStore } from "../store/store";
 import styles from "./Shop.module.scss";
-import CategoryDropdown from "../components/search/CategoryDropdown";
-import { Dropdown } from "../components/search/Dropdown";
-import TestB from "../Test/TestB";
 import AddToCart from "../components/actionButtons/AddToCart";
 import { useModalStore } from "../hooks/useModalStore";
 import ProductList from "../components/ProductList";
+import Filter from "../components/filter/Filter";
 
 export const Shop = () => {
-  const { isLoadingProducts, error, fetchProducts } = useStore();
+  const { isLoadingProducts, error, fetchProducts, fetchCategories } = useStore();
 
   const { openModal } = useModalStore();
 
   useEffect(() => {
     fetchProducts();
-  }, [fetchProducts]);
+    fetchCategories();
+  }, [fetchProducts, fetchCategories]);
 
   if (isLoadingProducts) {
     return <div>Loading products...</div>;
@@ -28,9 +27,7 @@ export const Shop = () => {
   return (
     <div className={styles.container}>
       <div className={styles.searchbar}>
-        <button onClick={() => openModal(<TestB />)}>Modal</button>
-        <CategoryDropdown />
-        <Dropdown />
+        <Filter />
       </div>
       <div className={styles.products}>
         <ProductList

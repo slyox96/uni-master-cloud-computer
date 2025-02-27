@@ -11,7 +11,7 @@
         top: variables.$topbar-height;
         width: calc(100% - variables.$drawer-width);
         height: variables.$searchbar-height;
-        background-color: lightblue;
+        // background-color: lightblue;
         display: flex;
         align-items: center;
         gap: 0.5rem;
@@ -19,7 +19,7 @@
     
     .products {
         height: 100%;
-        background-color: lightcoral;
+        // background-color: lightcoral;
         display: flex;
         justify-content: center;
         align-items: center;

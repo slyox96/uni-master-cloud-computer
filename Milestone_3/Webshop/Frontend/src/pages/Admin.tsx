@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 
 import styles from "./Admin.module.scss";
-import CategoryDropdown from '../components/search/CategoryDropdown';
-import { Dropdown } from '../components/search/Dropdown';
+import CategoryDropdown from '../components/filter/CategoryDropdown';
+import { Dropdown } from '../components/filter/Dropdown';
 import { Product } from '../types/Product';
 import ProductCard from '../components/ProductCard';
 import { useStore } from "../store/store";

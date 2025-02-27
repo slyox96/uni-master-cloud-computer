@@ -18,7 +18,7 @@ $buybar-height: 5rem;
 .container {
     height: calc(100vh - variables.$topbar-height - $buybar-height);
     margin-bottom: $buybar-height;
-    background-color: lightcoral;
+    // background-color: lightcoral;
     display: flex;
     justify-content: center;
     align-items: center;

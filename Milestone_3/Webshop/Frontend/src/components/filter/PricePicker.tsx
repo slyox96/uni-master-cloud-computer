@@ -18,6 +18,7 @@ const PricePicker: React.FC = () => {
 
     return (
         <div className={styles.pricePicker}>
+            <label>Price: </label>
             <input
                 type="number"
                 id="minPrice"
@@ -27,7 +28,7 @@ const PricePicker: React.FC = () => {
                 step="1"
                 className={styles.input}
             />
-
+            <label> - </label>
             <input
                 type="number"
                 id="maxPrice"
@@ -37,7 +38,6 @@ const PricePicker: React.FC = () => {
                 step="1"
                 className={styles.input}
             />
-            <button type='submit'>Filter</button>
 
         </div>
     );

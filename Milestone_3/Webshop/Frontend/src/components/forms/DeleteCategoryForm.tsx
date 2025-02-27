@@ -1,20 +1,20 @@
-import React from 'react';
+import React from 'react'
 import styles from './DeleteForm.module.scss';
-import { Product } from '../../types/Product';
+import { Category } from '../../types/Product';
 import { useToastStore } from '../../hooks/useToastStore';
 
-type DeleteProductFormProps = {
-    product: Product;
+type DeleteCategoryFormProps = {
+    category: Category;
 };
 
-export const DeleteProductForm: React.FC<DeleteProductFormProps> = ({ product }) => {
+const DeleteCategoryForm: React.FC<DeleteCategoryFormProps> = ({category}) => {
     const { showToast } = useToastStore();
     return (
         <div className={styles.deleteForm}>
             <button
                 type="button"
                 className={styles.buttonCancel}
-                onClick={() => showToast(`${product.name} wurde gelöscht`, 3000)}>
+                onClick={() => showToast(`${category.name} wurde gelöscht`, 3000)}>
                 Cancel
             </button>
             <button type="button" className={styles.buttonDelete}>
@@ -22,4 +22,6 @@ export const DeleteProductForm: React.FC<DeleteProductFormProps> = ({ product })
             </button>
         </div>
     );
-};
+}
+
+export default DeleteCategoryForm
