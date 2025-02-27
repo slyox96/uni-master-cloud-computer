@@ -36,7 +36,6 @@ export const Dropdown: React.FC<DropdownProps> = ({ selected, onSelect }) => {
     </div>
     {isOpen && (
       <ul className={styles.options}>
-        {/* "ALL" als erste Option */}
         <li
           className={styles.option}
           onClick={() => { onSelect("All"); setIsOpen(false); }}
