@@ -28,20 +28,34 @@ export const Dropdown: React.FC<DropdownProps> = ({ selected, onSelect }) => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className={styles.dropdownWrapper}>
-      <label htmlFor="categoryDropdown" className={styles.label}>Category:</label>
-      <div className={styles.dropdown} ref={dropdownRef} role="combobox">
-        <div className={styles.selected} onClick={() => setIsOpen(!isOpen)}>{selected}</div>
-        {isOpen && (
-          <ul className={styles.options}>
-            {categories.map((category) => (
-              <li key={category.id} className={styles.option} onClick={() => { onSelect(category.name); setIsOpen(false); }}>
-                {category.name}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+<div className={styles.dropdownWrapper}>
+  <label htmlFor="categoryDropdown" className={styles.label}>Category:</label>
+  <div className={styles.dropdown} ref={dropdownRef} role="combobox">
+    <div className={styles.selected} onClick={() => setIsOpen(!isOpen)}>
+      {selected}
     </div>
+    {isOpen && (
+      <ul className={styles.options}>
+        {/* "ALL" als erste Option */}
+        <li
+          className={styles.option}
+          onClick={() => { onSelect("All"); setIsOpen(false); }}
+        >
+          All
+        </li>
+        {categories.map((category) => (
+          <li
+            key={category.id}
+            className={styles.option}
+            onClick={() => { onSelect(category.name); setIsOpen(false); }}
+          >
+            {category.name}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</div>
+
   );
 };
