@@ -1,46 +1,36 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './PricePicker.module.scss';
 
-const PricePicker: React.FC = () => {
-    // States für Mindest- und Höchstpreis
-    const [minPrice, setMinPrice] = useState<number>(0);
-    const [maxPrice, setMaxPrice] = useState<number>(1000);
+type PricePickerProps = {
+  minPrice: number;
+  maxPrice: number;
+  onMinPriceChange: (value: number) => void;
+  onMaxPriceChange: (value: number) => void;
+};
 
-    // Handler für die Eingabefelder
-    const handleMinPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setMinPrice(Number(e.target.value));
-    };
-
-    const handleMaxPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setMaxPrice(Number(e.target.value));
-    };
-
-
-    return (
-        <div className={styles.pricePicker}>
-            <label>Price: </label>
-            <input
-                type="number"
-                id="minPrice"
-                value={minPrice}
-                onChange={handleMinPriceChange}
-                min="0"
-                step="1"
-                className={styles.input}
-            />
-            <label> - </label>
-            <input
-                type="number"
-                id="maxPrice"
-                value={maxPrice}
-                onChange={handleMaxPriceChange}
-                min="0"
-                step="1"
-                className={styles.input}
-            />
-
-        </div>
-    );
+const PricePicker: React.FC<PricePickerProps> = ({ minPrice, maxPrice, onMinPriceChange, onMaxPriceChange }) => {
+  return (
+    <div className={styles.pricePicker}>
+      <label>Price: </label>
+      <input
+        type="number"
+        value={minPrice}
+        onChange={(e) => onMinPriceChange(Number(e.target.value))}
+        min="0"
+        step="1"
+        className={styles.input}
+      />
+      <label> - </label>
+      <input
+        type="number"
+        value={maxPrice}
+        onChange={(e) => onMaxPriceChange(Number(e.target.value))}
+        min="0"
+        step="1"
+        className={styles.input}
+      />
+    </div>
+  );
 };
 
 export default PricePicker;

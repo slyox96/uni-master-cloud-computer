@@ -3,20 +3,8 @@
 @use "../scss/scrollbar.scss" as scrollbar;
 
 
-.searchbar {
-    position: fixed;
-    top: variables.$topbar-height;
-    width: calc(100% - variables.$drawer-width);
-    height: variables.$searchbar-height;
-    background-color: lightblue;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
 .container {
-    height: calc(100vh - variables.$topbar-height - variables.$searchbar-height);
-    margin-top: variables.$searchbar-height;
+    height: calc(100vh - variables.$topbar-height);
     background-color: lightcoral;
     overflow-y: auto;
     display: flex;
