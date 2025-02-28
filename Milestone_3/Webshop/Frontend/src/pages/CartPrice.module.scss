@@ -1,0 +1,19 @@
+.cartPriceContainer {
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .totalPriceHeading {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  
+  .totalPrice {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-left: .25rem;
+  }
+  

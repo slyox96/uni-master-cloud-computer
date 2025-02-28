@@ -4,6 +4,8 @@ import styles from "./ProductCard.module.scss";
 
 import ProductPrice from "./ProductPrice";
 
+// Hier die URL des Standardbildes einfügen
+import defaultImage from "../assets/No_Image_Available.jpg"
 
 type ProductCardProps = {
   product: Product,
@@ -17,11 +19,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
   isInCart  
 }) => {
 
+  // Überprüfe, ob ein Bild vorhanden ist, andernfalls Standardbild verwenden
+  const imageUrl = product.image || defaultImage;
+
   return (
     <div className={styles.card}>
       <img
         className={styles.product_image}
-        src={product.image}
+        src={imageUrl}
         alt={product.name}
       />
       <div className={styles.information}>

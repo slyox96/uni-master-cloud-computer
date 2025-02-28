@@ -21,16 +21,16 @@ const Quantity: React.FC<QuantityProps> = ({ productId }) => {
       {quantity === 1 ? (
         <button
           type="button"
-          onClick={() => removeFromCart(productId)}
           className={styles.quantity_button}
+          onClick={() => removeFromCart(productId)}
         >
           <img src={trash} alt="Trash Icon" />
         </button>
       ) : (
         <button
           type="button"
-          onClick={() => decrementQuantity(productId)}
           className={styles.quantity_button}
+          onClick={() => decrementQuantity(productId)}
           disabled={quantity <= 0}
         >
           <img src={minus} alt="Minus Icon" />

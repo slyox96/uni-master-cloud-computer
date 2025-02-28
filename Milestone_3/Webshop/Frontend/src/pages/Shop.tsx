@@ -1,55 +1,40 @@
 import React, { useEffect } from "react";
 import { useStore } from "../store/store";
-import { Product } from "../types/Product";
 import styles from "./Shop.module.scss";
-import ProductCard from "../components/ProductCard";
-import CategoryDropdown from "../components/search/CategoryDropdown";
-import { Dropdown } from "../components/search/Dropdown";
-import TestB from "../Test/TestB";
-import AddToCart from "../components/ActionButtons/AddToCard";
+import AddToCart from "../components/actionButtons/AddToCart";
 import { useModalStore } from "../hooks/useModalStore";
+import ProductList from "../components/ProductList";
+import Filter from "../components/filter/Filter";
 
 export const Shop = () => {
-  const { products, isLoadingProducts, error, fetchProducts } = useStore(); // Verwenden des isLoadingProducts
+  const { isLoadingProducts, error, fetchProducts, fetchCategories } = useStore();
 
   const { openModal } = useModalStore();
 
-  // Produkte beim Laden der Seite holen
   useEffect(() => {
     fetchProducts();
-  }, [fetchProducts]);
+    fetchCategories();
+  }, [fetchProducts, fetchCategories]);
 
-  // Ladeanzeige anzeigen, wenn Produkte geladen werden
   if (isLoadingProducts) {
-    return <div>Loading products...</div>; // Anpassbare Ladeanzeige für Produkte
+    return <div>Loading products...</div>;
   }
 
-  // Fehleranzeige, falls es einen Fehler beim Abrufen gibt
   if (error) {
     return <div>Error: {error}</div>;
   }
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.searchbar}>
-        <button onClick={() => openModal(<TestB />)}>Modal</button>
-        <CategoryDropdown />
-        <Dropdown />
+        <Filter />
       </div>
-      {products.length === 0 ? (
-        <p>No products available</p>
-      ) : (
-        <div className={styles.product_List}>
-          {products.map((product: Product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              actionButtons={<AddToCart productId={product.id} />}
-              isInCart={false}
-            />
-          ))}
-        </div>
-      )}
-    </>
+      <div className={styles.products}>
+        <ProductList
+          isInCart={false}
+          actionButtons={(product) => <AddToCart productId={product.id} />}
+        />
+      </div>
+    </div>
   );
 };

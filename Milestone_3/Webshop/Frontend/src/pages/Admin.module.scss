@@ -2,54 +2,28 @@
 @use "../scss/colors.scss";
 @use "../scss/scrollbar.scss" as scrollbar;
 
-$searchbar-height: 5rem;
-
-.searchbar {
-    position: fixed;
-    top: variables.$topbar-height;
-    width: calc(100% - variables.$drawer-width);
-    height: $searchbar-height;
-    background-color: lightblue;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
 
 .container {
-    height: 100%; /* Ganze Bildschirmhöhe */
-    width: 100%;
-    background-color: blueviolet;
+    height: calc(100vh - variables.$topbar-height);
+    background-color: lightcoral;
+    overflow-y: auto;
     display: flex;
-    flex-direction: row; /* Damit sich die Liste unterhalb der Searchbar anpasst */
+    gap: 1rem;
 
-    .product_List {
-        margin-top: calc($searchbar-height + 1rem);
-        margin-left: 5rem;
-        margin-right: 5rem;
-        background-color: lightcoral;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        max-height: calc(100vh - variables.$topbar-height - $searchbar-height - 2rem); /* Berechnete Höhe */
+    .categories {
+        flex: 1;
+        background-color: green;
         overflow-y: auto;
-        padding-right: 10px; /* Abstand für Scrollbar */
-
+        max-height: 100%;
         @include scrollbar.custom-scrollbar(colors.$primary, colors.$secondary, #ffe0e0);
     }
 
-    .category_List {
-        width: 70%;
-        margin-top: calc($searchbar-height + 1rem);
-        margin-left: 5rem;
-        margin-right: 5rem;
-        background-color: lightcoral;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        max-height: calc(100vh - variables.$topbar-height - $searchbar-height - 2rem); /* Berechnete Höhe */
+    .products {
+        flex: 2;
+        background-color: blue;
         overflow-y: auto;
-        padding-right: 10px; /* Abstand für Scrollbar */
-
+        max-height: 100%;
         @include scrollbar.custom-scrollbar(colors.$primary, colors.$secondary, #ffe0e0);
     }
+
 }

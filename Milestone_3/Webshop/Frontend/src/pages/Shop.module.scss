@@ -1,26 +1,32 @@
 @use "../scss/variables.scss";
+@use "../scss/colors.scss";
+@use "../scss/scrollbar.scss" as scrollbar;
 
-
-$searchbar-height: 5rem;
-
-.searchbar {
-    position: fixed;
-    top: variables.$topbar-height;
-    width: calc(100% - variables.$drawer-width);
-    height: $searchbar-height;
-    background-color: lightblue;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+.container{
+    height: calc(100vh - variables.$topbar-height - variables.$searchbar-height);
+    margin-top: variables.$searchbar-height;
+    
+    .searchbar {
+        position: fixed;
+        top: variables.$topbar-height;
+        width: calc(100% - variables.$drawer-width);
+        height: variables.$searchbar-height;
+        // background-color: lightblue;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .products {
+        height: 100%;
+        // background-color: lightcoral;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow-y: auto;
+    
+        @include scrollbar.custom-scrollbar(colors.$primary, colors.$secondary, #ffe0e0);
+    }
 }
 
-.product_List {
-    margin-top: calc($searchbar-height + 1rem);
-    margin-left: 5rem;
-    margin-right: 5rem;
-    // background-color: lightcoral;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}

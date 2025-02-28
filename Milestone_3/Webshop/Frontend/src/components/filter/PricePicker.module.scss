@@ -1,0 +1,28 @@
+.pricePicker {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; // Abstand zwischen den Elementen
+
+    label {
+        font-weight: bold;
+        font-size: 1rem;
+        color: #333;
+        white-space: nowrap;
+    }
+
+    .input {
+        width: 5rem;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 1rem;
+        transition: all 0.2s ease-in-out;
+
+        &:focus {
+            border-color: violet;
+            outline: none;
+            box-shadow: 0 0 5px rgba(238, 130, 238, 0.6);
+        }
+    }
+}

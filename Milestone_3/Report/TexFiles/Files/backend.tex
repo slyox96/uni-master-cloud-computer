@@ -1,0 +1,309 @@
+\section{Backend Implementation}
+
+\subsection{Django Project and App Structure}
+The backend of our e-commerce platform is developed using \textbf{Django}, a high-level Python web framework that follows the Model-View-Template (MVT) architecture. The project is structured into two main applications:  
+\begin{itemize}
+    \item \textbf{backend:} Handles global settings and configurations for the project.
+    \item \textbf{api:} Manages the REST API endpoints and facilitates communication with the frontend.
+\end{itemize}
+
+To set up the project, we initialized a Django project named \texttt{backend} and created the \texttt{api} application:
+
+\begin{verbatim}
+django-admin startproject backend
+cd backend
+python manage.py startapp api
+\end{verbatim}
+
+Next, the required applications were registered in \texttt{settings.py} under the \texttt{INSTALLED\_APPS} section:
+
+\begin{verbatim}
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',  
+    'api',
+    'corsheaders',
+    'backend',
+]
+\end{verbatim}
+
+The \texttt{backend} app is responsible for managing general project settings and configurations, such as middleware, database connections, and authentication settings. Meanwhile, the \texttt{api} app is dedicated to handling RESTful communication by exposing endpoints for product management, order processing, and user authentication.
+
+\subsection{Database Model Design}
+The database schema was designed using Django's \textbf{Object-Relational Mapper (ORM)}, ensuring efficient interaction with the database while maintaining relational integrity. The primary models implemented in the \texttt{api} application include:
+
+\subsubsection{Category Model}
+The \texttt{Category} model organizes products into different categories. It consists of a single field:
+
+\begin{verbatim}
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+\end{verbatim}
+
+\subsubsection{Product Model}
+Each product is stored in the \texttt{Product} model, which includes essential attributes such as name, description, price, stock quantity, and category association.
+
+\begin{verbatim}
+class Product(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    price = models.FloatField()
+    stock = models.IntegerField(default=0)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE) 
+    image = models.ImageField(upload_to='products/', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+\end{verbatim}
+
+The \texttt{category} field establishes a \textbf{one-to-many relationship} with the \texttt{Category} model, ensuring that each product belongs to a specific category.
+
+\subsubsection{Order Model}
+The \texttt{Order} model represents customer transactions and includes information about the order status and payment method.
+
+\begin{verbatim}
+class Order(models.Model):
+    orderNumber = models.CharField(max_length=100, unique=True)
+    totalAmount = models.FloatField()
+    status = models.CharField(
+        max_length=20, 
+        choices=OrderStatus.choices, 
+        default=OrderStatus.PENDING
+    )
+    paymentMethod = models.CharField(
+        max_length=20, 
+        choices=PaymentMethod.choices
+    )
+
+    def __str__(self):
+        return self.orderNumber
+\end{verbatim}
+
+The \texttt{status} and \texttt{paymentMethod} fields utilize Django's \texttt{TextChoices} feature, enforcing predefined values for order states (\texttt{PENDING, COMPLETED, CANCELLED}) and payment methods (\texttt{CREDIT\_CARD, PAYPAL, BANK\_TRANSFER}).
+
+\subsubsection{OrderItem Model}
+The \texttt{OrderItem} model defines the many-to-many relationship between \texttt{Order} and \texttt{Product}, specifying the quantity and price of each product within an order.
+
+\begin{verbatim}
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    price = models.FloatField()
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product.name} in Order {self.order.orderNumber}"
+\end{verbatim}
+
+The \texttt{ForeignKey} relationships ensure that when an order is deleted, its associated items are also removed, maintaining referential integrity.
+
+\subsection{Database Migration}
+After defining the models, database migrations were created and applied using Django's migration framework:
+
+\begin{verbatim}
+python manage.py makemigrations api
+python manage.py migrate
+\end{verbatim}
+
+This step ensures that the defined models are translated into database tables.
+
+\subsection{API Integration}
+The \texttt{api} application exposes REST endpoints using the \textbf{Django REST Framework (DRF)}. This enables the frontend to interact with the backend through HTTP requests, facilitating CRUD operations on products, orders, and user authentication. The API design follows RESTful principles, ensuring a structured and scalable communication interface.
+
+\subsection{Serializers in the API Application}
+
+To facilitate data exchange between the backend and frontend, the \texttt{api} application utilizes \textbf{serializers} from the Django REST Framework (DRF). Serializers enable the transformation of complex Django model instances into JSON format and vice versa, ensuring efficient data transmission over RESTful APIs.
+
+The implemented serializers correspond to the core models of the system: \texttt{Product}, \texttt{Order}, \texttt{OrderItem}, and \texttt{Category}. These serializers are defined as follows:
+
+\subsubsection{Product Serializer}
+The \texttt{ProductSerializer} is a \texttt{ModelSerializer} that converts \texttt{Product} model instances into JSON representations, including fields such as name, description, price, stock, and category.
+
+\begin{verbatim}
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'description', 'price', 'stock', 'category', 'image']
+\end{verbatim}
+
+\subsubsection{OrderItem Serializer}
+The \texttt{OrderItemSerializer} serializes individual items within an order. To provide detailed product information, it nests a \texttt{ProductSerializer} instance, allowing each \texttt{OrderItem} to include the associated product's attributes.
+
+\begin{verbatim}
+class OrderItemSerializer(serializers.ModelSerializer):
+    product = ProductSerializer()  
+
+    class Meta:
+        model = OrderItem
+        fields = '__all__'
+\end{verbatim}
+
+\subsubsection{Order Serializer}
+The \texttt{OrderSerializer} manages the serialization of orders. Since an order consists of multiple order items, it integrates the \texttt{OrderItemSerializer} using the \texttt{source} parameter to reference the related \texttt{OrderItem} instances. The \texttt{many=True} argument ensures that multiple order items can be included in the response.
+
+\begin{verbatim}
+class OrderSerializer(serializers.ModelSerializer):
+    order_items = OrderItemSerializer(source="orderitem_set", many=True, read_only=True)  
+
+    class Meta:
+        model = Order
+        fields = '__all__'
+\end{verbatim}
+
+\subsubsection{Category Serializer}
+The \texttt{CategorySerializer} handles the conversion of \texttt{Category} instances into JSON format, exposing all attributes of the \texttt{Category} model.
+
+\begin{verbatim}
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
+\end{verbatim}
+
+\subsection{Views in the API Application}
+
+In the \texttt{api} application, \textbf{views} are responsible for handling HTTP requests, processing data, and returning responses. The views are implemented using Django REST Framework's (DRF) \texttt{viewsets} and \texttt{generics}, which simplify the process of building RESTful APIs by automatically handling common actions like list, create, retrieve, update, and delete.
+
+The main views in our application include views for handling products, orders, order items, and categories. These views are based on DRF's \texttt{ModelViewSet} and \texttt{ListCreateAPIView} classes, which provide functionality for interacting with the respective models.
+
+\subsubsection{Product Views}
+The \texttt{ProductListCreate} view allows clients to list all products and create new products. It uses the \texttt{ListCreateAPIView}, which provides both listing and creation functionality:
+
+\begin{verbatim}
+class ProductListCreate(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    parser_classes = (MultiPartParser, FormParser)
+\end{verbatim}
+
+The \texttt{ProductViewSet} is a more advanced view that also provides the capability to search for products based on their name or description. This is achieved through the use of the \texttt{SearchFilter} from DRF:
+
+\begin{verbatim}
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'description']
+\end{verbatim}
+
+\subsubsection{Order and OrderItem Views}
+The \texttt{OrderViewSet} is responsible for handling orders, allowing for the listing, retrieval, updating, and deletion of orders. It also includes custom logic for creating orders. When an order is created, the related order items are processed and saved separately:
+
+\begin{verbatim}
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+    def create(self, request, *args, **kwargs):
+        data = request.data
+        items = data.pop("items", [])
+        order = Order.objects.create(**data)
+
+        for item in items:
+            OrderItem.objects.create(order=order, **item)
+
+        return Response(OrderSerializer(order).data, status=status.HTTP_201_CREATED)
+\end{verbatim}
+
+The \texttt{OrderItemViewSet} is similar to the \texttt{OrderViewSet} but operates specifically on individual order items:
+
+\begin{verbatim}
+class OrderItemViewSet(viewsets.ModelViewSet):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+\end{verbatim}
+
+\subsubsection{Category Views}
+The \texttt{CategoryViewSet} allows for the listing, creation, and management of categories, providing standard CRUD functionality through the \texttt{ModelViewSet}:
+
+\begin{verbatim}
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+\end{verbatim}
+
+Additionally, the \texttt{ProductListByCategory} view enables filtering products by category. It uses the \texttt{ListAPIView} class to return a list of products based on the specified \texttt{category\_id}:
+
+\begin{verbatim}
+class ProductListByCategory(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = (SearchFilter,)
+    search_fields = ['category__id']
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        category_id = self.request.query_params.get('category_id', None)
+        if category_id:
+            queryset = queryset.filter(category__id=category_id)
+        return queryset
+\end{verbatim}
+
+\subsection{URLs in the API Application}
+
+In the \texttt{api} application, the URLs define the routing of HTTP requests to specific views, enabling clients to interact with the backend. The routing is configured using Django's \texttt{path} function and DRF's \texttt{DefaultRouter}, which automatically generates routes for viewsets.
+
+The main URLs are defined as follows:
+
+\subsubsection{Default Router}
+The \texttt{DefaultRouter} is used to register the viewsets for products, orders, order items, and categories. This automatically creates the necessary routes for standard CRUD operations:
+
+\begin{verbatim}
+router = DefaultRouter()
+router.register(r'products', ProductViewSet)
+router.register(r'orders', OrderViewSet)
+router.register(r'orderitems', OrderItemViewSet)
+router.register(r'categories', CategoryViewSet)
+\end{verbatim}
+
+This results in the following routes:
+\begin{itemize}
+    \item \texttt{/products/} for managing products,
+    \item \texttt{/orders/} for managing orders,
+    \item \texttt{/orderitems/} for managing order items,
+    \item \texttt{/categories/} for managing categories.
+\end{itemize}
+
+\subsubsection{Additional Routes}
+In addition to the automatically generated routes, custom URLs are defined for specific actions, such as listing products and searching for products by category. These routes are manually configured using the \texttt{path} function:
+
+\begin{verbatim}
+urlpatterns = [
+    path('', include(router.urls)),  
+    path('products-list/', ProductListCreate.as_view(), name='product-list'),
+    path('products/search/', views.ProductListByCategory.as_view(), name='product-search'),
+]
+\end{verbatim}
+
+The \texttt{products-list/} route is mapped to the \texttt{ProductListCreate} view, which handles both listing and creating products, while the \texttt{products/search/} route maps to the \texttt{ProductListByCategory} view, which enables filtering products by category.
+
+\subsection{Django Admin Panel}
+
+The Django Admin Panel provides a powerful and customizable interface for managing the application's data. It allows administrators to interact with the models directly, facilitating tasks such as adding, editing, and deleting records without requiring direct database access.
+
+In the \texttt{api} application, the admin panel is configured to manage the core models: \texttt{Product}, \texttt{Order}, \texttt{OrderItem}, and \texttt{Category}. The following configuration registers these models with the Django admin interface:
+
+\begin{verbatim}
+from django.contrib import admin
+from .models import Product, Order, OrderItem, Category
+
+admin.site.register(Product)
+admin.site.register(Order)
+admin.site.register(OrderItem)
+admin.site.register(Category)
+\end{verbatim}
+
+By registering the models, they are made available in the Django Admin Panel, allowing administrators to view and modify their data through a user-friendly interface. The admin panel automatically provides basic CRUD operations for each registered model, ensuring ease of use for the management of products, orders, and categories.
+
+\subsubsection{Customization}
+While the default admin interface is functional, it can be further customized by adding custom admin classes to modify the way models are displayed or edited. For example, fields can be arranged in a more intuitive layout, or search functionality can be added to improve usability. In this application, however, the default configuration suffices for basic administrative tasks.
+
+

@@ -7,7 +7,7 @@
 
     @include scrollbar.custom-scrollbar(colors.$primary, colors.$secondary, #ffe0e0);
 
-    .category_list {
+    .cart_list {
         list-style: none;
         display: flex;
         flex-direction: column;
