@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./Dropdown.module.scss";
 import { useStore } from "../../store/store";
+import { Category } from "../../types/Product"; // Importiere das Category-Interface
 
 type DropdownProps = {
-  selected: string;
-  onSelect: (category: string) => void;
+  selected: Category; // selected ist nun ein Category-Objekt
+  onSelect: (category: Category) => void; // onSelect erwartet ein Category-Objekt
 };
 
 export const Dropdown: React.FC<DropdownProps> = ({ selected, onSelect }) => {
@@ -28,33 +29,32 @@ export const Dropdown: React.FC<DropdownProps> = ({ selected, onSelect }) => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-<div className={styles.dropdownWrapper}>
-  <label htmlFor="categoryDropdown" className={styles.label}>Category:</label>
-  <div className={styles.dropdown} ref={dropdownRef} role="combobox">
-    <div className={styles.selected} onClick={() => setIsOpen(!isOpen)}>
-      {selected}
+    <div className={styles.dropdownWrapper}>
+      <label htmlFor="categoryDropdown" className={styles.label}>Category:</label>
+      <div className={styles.dropdown} ref={dropdownRef} role="combobox">
+        <div className={styles.selected} onClick={() => setIsOpen(!isOpen)}>
+          {selected.name} {/* Zeige den Namen der ausgewählten Kategorie an */}
+        </div>
+        {isOpen && (
+          <ul className={styles.options}>
+            <li
+              className={styles.option}
+              onClick={() => { onSelect({ id: 0, name: "All" }); setIsOpen(false); }}
+            >
+              All
+            </li>
+            {categories.map((category) => (
+              <li
+                key={category.id}
+                className={styles.option}
+                onClick={() => { onSelect(category); setIsOpen(false); }}
+              >
+                {category.name}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
-    {isOpen && (
-      <ul className={styles.options}>
-        <li
-          className={styles.option}
-          onClick={() => { onSelect("All"); setIsOpen(false); }}
-        >
-          All
-        </li>
-        {categories.map((category) => (
-          <li
-            key={category.id}
-            className={styles.option}
-            onClick={() => { onSelect(category.name); setIsOpen(false); }}
-          >
-            {category.name}
-          </li>
-        ))}
-      </ul>
-    )}
-  </div>
-</div>
-
   );
 };

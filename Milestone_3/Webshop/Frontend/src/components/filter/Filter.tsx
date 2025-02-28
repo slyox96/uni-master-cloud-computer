@@ -2,25 +2,30 @@ import React, { useState } from 'react';
 import { Dropdown } from './Dropdown';
 import styles from "./Filter.module.scss";
 import PricePicker from './PricePicker';
+import { useFilterStore } from '../../hooks/useFilterStore';
+import { Category } from '../../types/Product'; // Importiere den Category-Typ
 
 const Filter = () => {
-  // States für die ausgewählte Kategorie und Preiswerte
-  const [selectedCategory, setSelectedCategory] = useState<string>("Bitte wählen");
+  const { setFilterOptions } = useFilterStore();
+  const [selectedCategory, setSelectedCategory] = useState<Category>({ id: 0, name: 'All' });
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(1000);
 
-  // REST-Call beim Klicken auf "Filter"
   const handleFilter = async () => {
+    setFilterOptions({
+      selectedCategory,
+      minPrice,
+      maxPrice,
+    });
+
     const queryParams = new URLSearchParams({
-      category: selectedCategory,
+      category: selectedCategory.name,
       minPrice: minPrice.toString(),
       maxPrice: maxPrice.toString(),
     });
-  
-    // Einfach in ein Objekt umwandeln und loggen
-    const queryObject = Object.fromEntries(queryParams.entries());
-  
-    console.log("Help:", queryObject);
+
+    const filteredProducts = Object.fromEntries(queryParams.entries());
+    // console.log("filteredProducts: ", filteredProducts);
   };
 
   return (
@@ -33,3 +38,4 @@ const Filter = () => {
 };
 
 export default Filter;
+

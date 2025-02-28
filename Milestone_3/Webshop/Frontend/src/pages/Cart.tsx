@@ -1,8 +1,15 @@
-import styles from "./Cart.module.scss";
-import CartPrice from "./CartPrice";
-import CartList from "../components/CartList";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from './Cart.module.scss';
+import CartPrice from './CartPrice';
+import CartList from '../components/CartList';
 
-export const Cart = () => {
+export const Cart: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    navigate('/checkout');
+  };
 
   return (
     <>
@@ -11,7 +18,7 @@ export const Cart = () => {
       </div>
       <div className={styles.buybar}>
         <CartPrice />
-        <button>Klick</button>
+        <button onClick={handleCheckout}>Zur Kasse</button>
       </div>
     </>
   );

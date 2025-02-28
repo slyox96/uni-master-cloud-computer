@@ -10,6 +10,7 @@ import TestA from './Test/TestA.tsx';
 import TestB from './Test/TestB.tsx';
 
 import './index.scss'
+import Checkout from './components/forms/Checkout.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/Shop" element={<Shop />} />
         <Route path="/Cart" element={<Cart />} />
         <Route path="/Admin" element={<Admin />} />
+        <Route path="checkout" element={<Checkout />} />
       </Route>
     </Routes>
   </BrowserRouter>
