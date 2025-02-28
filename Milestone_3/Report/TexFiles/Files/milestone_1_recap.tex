@@ -1,0 +1,47 @@
+\section{Recap of Milestone 1}
+
+In Milestone 1, the infrastructure of LowTech GmbH was evaluated, and a cloud transformation strategy was developed to select a hybrid cloud solution. The primary objective was to identify the existing challenges and formulate a solution that enhances scalability and operational efficiency.
+
+\subsection{Current Infrastructure}
+
+LowTech GmbH currently operates an on-premise infrastructure with fixed server capacities. The infrastructure comprises 232 GB of RAM, 8500 GB of HDD storage, 500 GB of SSD storage, and 10,000 GB of tape storage. The primary resource consumers are the CRM and payroll systems. The monthly energy consumption totals 7101.6 kWh.
+
+\subsection{Key Issues}
+
+The infrastructure presents several shortcomings: \begin{itemize} \item \textbf{Elasticity}: The system lacks scalability. \item \textbf{Availability}: There is minimal redundancy, resulting in low availability. \item \textbf{Scalability}: There is limited manual scalability. \item \textbf{Resource Utilization}: Inefficient resource utilization without optimization. \end{itemize}
+
+\subsection{Cloud Transformation Plan}
+
+The plan proposes the implementation of a hybrid cloud strategy, combining private and colocated clouds while leveraging a microservices architecture. Open-source technologies are to be employed to reduce costs and enhance security.
+
+\subsubsection{Roadmap} \begin{itemize} \item \textbf{Phase 1}: Infrastructure evaluation. \item \textbf{Phase 2}: Modernization planning. \item \textbf{Phase 3}: Creation of virtual servers. \item \textbf{Phase 4}: Performance and security testing. \item \textbf{Phase 5}: Migration and training. \end{itemize}
+
+\subsection{Hybrid Cloud Solution}
+
+The hybrid solution leverages a \textbf{Private Cloud} for sensitive data and a \textbf{Colocated Cloud} for scalability. This combination provides security and flexibility in resource management.
+
+\subsubsection{Private Cloud} Ensures control over sensitive data (e.g., payroll) and compliance with regulatory requirements (e.g., GDPR).
+
+\subsubsection{Colocated Hosting} Provides scalability for high-performance departments and cost-effective expansion.
+
+\subsection{Security and Compliance}
+
+The solution offers robust security measures: \begin{itemize} \item \textbf{Data Encryption}: Ensuring data security both at rest and in transit. \item \textbf{Access Controls}: Implementing Role-Based Access Control (RBAC) and identity management protocols. \item \textbf{Network Security}: Utilizing VPNs, firewalls, and intrusion detection systems. \end{itemize}
+
+\subsection{Scalability and Flexibility}
+
+The hybrid cloud infrastructure allows for scalability by utilizing the private cloud for critical workloads and colocated infrastructure for high-performance applications. This configuration supports operational efficiency and regulatory compliance.
+
+\subsection{Future Migration to Public Cloud}
+
+The hybrid infrastructure serves as a transitional model towards full migration to the public cloud. A containerized and microservices-based architecture will facilitate migration to cloud platforms such as AWS, Azure, or GCP.
+
+\subsection{Hardware and Software}
+
+\subsubsection{Hardware} \begin{itemize} \item Virtualized servers, storage solutions, and networking equipment (e.g., switches, routers, and firewalls). \end{itemize}
+
+\subsubsection{Software} \begin{itemize} \item Docker, Kubernetes, pfSense, Veeam, Prometheus, and Grafana. \end{itemize}
+
+\subsection{Energy Consumption and Cost Efficiency}
+
+By utilizing energy-efficient hardware and dynamic resource allocation, operational costs can be reduced. The transition to energy-efficient mini-PCs and laptops further optimizes energy consumption.

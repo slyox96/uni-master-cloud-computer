@@ -12,15 +12,15 @@ const AddToCart: React.FC<AddToCartProps> = ({ productId }) => {
 
   const handleAddToCart = () => {
     addToCart(productId);
-    showToast(`"${products.find((item)=>productId === item.id)?.name}" added to cart`, 3000)
+    showToast(`"${products.find((item) => productId === item.id)?.name}" added to cart`, 3000)
   };
 
   return (
-    <div className={styles.add_to_cart}>
-      <button className={styles.add} onClick={handleAddToCart}>
-        Add to Cart
-      </button>
-    </div>
+
+    <button className={styles.add} onClick={handleAddToCart}>
+      Add to Cart
+    </button>
+
   );
 };
 
