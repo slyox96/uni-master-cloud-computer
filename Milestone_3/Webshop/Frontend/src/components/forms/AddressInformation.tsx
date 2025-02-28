@@ -7,9 +7,9 @@ const AddressInformation = ({ data, onChange }: any) => {
       <ul>
         <li>
           <div className={styles.input_group}>
-            <label>Nachname:</label>
+            <label>Last Name:</label>
             <input name="lastname" value={data.lastname} onChange={onChange} />
-            <label>Vorname:</label>
+            <label>First Name:</label>
             <input name="firstname" value={data.firstname} onChange={onChange} />
           </div>
         </li>
@@ -21,21 +21,21 @@ const AddressInformation = ({ data, onChange }: any) => {
         </li>
         <li>
           <div className={styles.input_group}>
-            <label>Land:</label>
+            <label>Country:</label>
             <input name="country" value={data.country} onChange={onChange} />
           </div>
         </li>
         <li>
           <div className={styles.input_group}>
-            <label>Bundesland:</label>
+            <label>State/Province:</label>
             <input name="state" value={data.state} onChange={onChange} />
           </div>
         </li>
         <li>
           <div className={styles.input_group}>
-            <label>Postleitzahl:</label>
+            <label>Zip Code:</label>
             <input name="zip" value={data.zip} onChange={onChange} />
-            <label>Adresse:</label>
+            <label>Address:</label>
             <input name="address" value={data.address} onChange={onChange} />
           </div>
         </li>

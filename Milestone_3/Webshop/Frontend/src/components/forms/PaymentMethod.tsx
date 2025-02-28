@@ -8,7 +8,7 @@ const PaymentMethod = ({ data, onChange }: any) => {
 
   return (
     <div className={styles.paymentMethodContainer}>
-      <h2 className={styles.title}>Wählen Sie eine Zahlungsmethode</h2>
+      <h2 className={styles.title}>Choose a Payment Method</h2>
 
       <div className={styles.paymentOptions}>
         <label className={styles.radioLabel}>
@@ -17,7 +17,7 @@ const PaymentMethod = ({ data, onChange }: any) => {
         </label>
         <label className={styles.radioLabel}>
           <input type="radio" value="creditcard" checked={data.method === "creditcard"} onChange={handlePaymentMethodChange} />
-          Kreditkarte
+          Credit Card
         </label>
       </div>
 
@@ -25,11 +25,11 @@ const PaymentMethod = ({ data, onChange }: any) => {
         <div className={styles.paypalFields}>
           <h3>PayPal</h3>
           <label>
-            E-Mail-Adresse:
+            Email Address:
             <input
               type="email"
               name="paypalEmail"
-              placeholder="Ihre PayPal E-Mail"
+              placeholder="Your PayPal Email"
               value={data.paypalEmail}
               onChange={(e) => onChange({ paypalEmail: e.target.value })}
               className={styles.inputField}
@@ -38,9 +38,9 @@ const PaymentMethod = ({ data, onChange }: any) => {
         </div>
       ) : (
         <div className={styles.creditCardFields}>
-          <h3>Kreditkarte</h3>
+          <h3>Credit Card</h3>
           <label>
-            Kartennummer:
+            Card Number:
             <input
               type="text"
               name="creditCardNumber"
@@ -51,7 +51,7 @@ const PaymentMethod = ({ data, onChange }: any) => {
             />
           </label>
           <label>
-            Ablaufdatum:
+            Expiry Date:
             <input
               type="month"
               name="expiryDate"
