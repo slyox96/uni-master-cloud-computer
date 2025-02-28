@@ -33,13 +33,13 @@ export const Dropdown: React.FC<DropdownProps> = ({ selected, onSelect }) => {
       <label htmlFor="categoryDropdown" className={styles.label}>Category:</label>
       <div className={styles.dropdown} ref={dropdownRef} role="combobox">
         <div className={styles.selected} onClick={() => setIsOpen(!isOpen)}>
-          {selected.name} {/* Zeige den Namen der ausgewählten Kategorie an */}
+          {selected.name} 
         </div>
         {isOpen && (
           <ul className={styles.options}>
             <li
               className={styles.option}
-              onClick={() => { onSelect({ id: 0, name: "All" }); setIsOpen(false); }}
+              onClick={() => { onSelect({ id: -1, name: "All" }); setIsOpen(false); }}
             >
               All
             </li>

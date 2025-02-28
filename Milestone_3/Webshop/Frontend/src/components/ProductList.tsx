@@ -15,13 +15,10 @@ const ProductList: React.FC<ProductListProps> = ({ isInCart, actionButtons }) =>
   const { filterOptions } = useFilterStore();
   
   const filteredProducts = products.filter((product) => {
-
     return product.price >= filterOptions.minPrice &&
            product.price <= filterOptions.maxPrice &&
-           product.category.id === filterOptions.selectedCategory.id;
+           (filterOptions.selectedCategory.id === -1 || product.category === filterOptions.selectedCategory.id);
   });
-
-  console.log("filterOptions: ", filterOptions);
 
   return (
     <div className={styles.container}>
