@@ -1,0 +1,306 @@
+\subsection{Frontend Implementation with React}
+
+The frontend of the web application is built using the \textbf{React} library, which enables the development of dynamic and interactive user interfaces. Several tools and libraries were integrated to support the development process and ensure the scalability and maintainability of the application.
+
+\subsubsection{Vite for Project Setup}
+
+For the project setup, \texttt{Vite} was used as the build tool. Vite is a modern and efficient build tool that provides fast development cycles and efficient bundling. It is optimized for modern JavaScript frameworks and requires minimal configuration.
+
+The Vite application was created using the following steps. First, the Vite project was initialized using the \texttt{npm create} command, specifying the React template with TypeScript support:
+
+\begin{verbatim}
+npm create vite@latest frontend --template react-ts
+\end{verbatim}
+
+This command initializes a new React project named \texttt{frontend} with TypeScript support and the necessary configurations. The \texttt{react-ts} template provides an optimized setup for using React with TypeScript, allowing for type safety and better developer tooling throughout the project.
+
+Once the project was created, the required dependencies were installed using \texttt{npm}:
+
+\begin{verbatim}
+cd frontend
+npm install
+\end{verbatim}
+
+Some of the key packages installed for the project include:
+
+\begin{itemize}
+    \item \texttt{react} and \texttt{react-dom} for the React library and rendering React components in the DOM.
+    \item \texttt{react-router-dom} for handling client-side routing and navigation within the application.
+    \item \texttt{zustand} for state management, enabling global state sharing across components.
+    \item \texttt{sass} to support SCSS, allowing for modular and maintainable styling.
+    \item \texttt{typescript} to enable static type checking, improving code quality and providing better developer tooling.
+\end{itemize}
+
+After the installation, the development server can be started using the following command:
+
+\begin{verbatim}
+npm run dev
+\end{verbatim}
+
+This command starts the Vite development server, which supports features such as fast hot module replacement (HMR), providing a responsive development environment. The application is now ready to be developed and tested locally.
+
+\texttt{Vite} was chosen for its high performance, ease of use, and its ability to efficiently handle modern frontend frameworks like React with TypeScript.
+
+
+
+\subsubsection{React Router for Navigation}
+
+For routing within the application, \texttt{React Router} was implemented. React Router facilitates client-side navigation, allowing the application to load different views without requiring full page reloads. It supports both dynamic and static routes, enabling flexible management of URLs and components. By using React Router, the application can dynamically render different components based on the active route, ensuring a seamless user experience.
+
+The routing setup is structured as follows:
+
+\begin{verbatim}
+<BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Layout />}>
+      <Route path="/Shop" element={<Shop />} />
+      <Route path="/Cart" element={<Cart />} />
+      <Route path="/Admin" element={<Admin />} />
+      <Route path="checkout" element={<Checkout />} />
+    </Route>
+  </Routes>
+</BrowserRouter>
+\end{verbatim}
+
+The \texttt{BrowserRouter} component wraps the entire routing structure, utilizing the HTML5 History API to manage URL changes without refreshing the page. Inside the \texttt{Routes} component, multiple \texttt{Route} elements define paths and their corresponding components. The main \texttt{Layout} component serves as a wrapper for all pages, ensuring a consistent layout structure across the application. The \texttt{Outlet} component within \texttt{Layout} is used to dynamically render the active route's component.
+
+The \texttt{useNavigate} hook is used to programmatically navigate between routes. It allows for navigation based on specific events, such as button clicks or after certain conditions are met. An example usage of \texttt{useNavigate} is as follows:
+
+\begin{verbatim}
+const navigate = useNavigate();
+navigate('/Shop');
+\end{verbatim}
+
+This hook enables the developer to navigate to specific routes programmatically, enhancing the interactivity of the application.
+
+The \texttt{Layout} component itself serves as the main structure for all the pages, ensuring that elements such as the top navigation bar, side drawer, modals, and notifications are consistent across all views. The \texttt{Layout} component is defined as follows:
+
+\begin{verbatim}
+const Layout: React.FC = () => {
+  return (
+    <div className={styles.root}>
+      <TopBar isAdmin={true} />
+      <Drawer />
+      <div className={styles.content_container}>
+        <Outlet />
+      </div>
+      <Modal />
+      <Toast />
+    </div>
+  );
+};
+\end{verbatim}
+
+The \texttt{Layout} component includes the following key elements:
+
+\begin{itemize}
+    \item \texttt{TopBar}: Displays a top navigation bar with the option to toggle administrative features.
+    \item \texttt{Drawer}: A side navigation component that allows users to switch between various sections of the application.
+    \item \texttt{content\_container}: A container where the content of the active route is displayed. The \texttt{Outlet} component is used to render the currently active route's component.
+    \item \texttt{Modal}: A component for displaying modal dialogs, such as confirmation messages or forms.
+    \item \texttt{Toast}: A notification component that provides brief feedback, such as success or error messages.
+\end{itemize}
+
+This setup ensures that the layout remains consistent across all pages while the content dynamically changes based on the active route. The combination of \texttt{React Router} for navigation and the \texttt{Layout} component for consistent structure allows for an efficient and user-friendly frontend application.
+
+
+\subsubsection{State Management with Zustand}
+
+For state management in the frontend, the application utilizes \texttt{Zustand}, a small, fast, and scalable state management library for React. Zustand provides a straightforward way to manage global state in the application, allowing various components to share and modify state without the need for prop drilling.
+
+In the implementation, a custom store is created using \texttt{create} from Zustand, which defines the state and actions required by the application. The store maintains several pieces of state, including the list of products, the cart items, and categories. It also includes loading and error states to handle asynchronous requests.
+
+The store is defined as follows:
+
+\begin{verbatim}
+import { create } from "zustand";
+import { addToCart } from "./actions/addToCart";
+import { removeFromCart } from "./actions/removeFromCart";
+import { clearCart } from "./actions/clearCart";
+import { incrementQuantity } from "./actions/incrementQuantity";
+import { decrementQuantity } from "./actions/decrementQuantity";
+import ApiService from "../api/ApiService";
+
+interface StoreState {
+  products: Product[];
+  cart: CartItem[];
+  categories: Category[];
+  isLoadingProducts: boolean;
+  isLoadingCategories: boolean;
+  error: string | null;
+  fetchProducts: () => Promise<void>;
+  fetchCategories: () => Promise<void>;
+  addToCart: (productId: number, quantity?: number) => void;
+  removeFromCart: (productId: number) => void;
+  incrementQuantity: (productId: number, incrementBy?: number) => void;
+  decrementQuantity: (productId: number, decrementBy?: number) => void;
+  clearCart: () => void;
+}
+
+export const useStore = create<StoreState>((set) => ({
+  // Initial state values
+  products: [],
+  cart: [],
+  categories: [],
+  isLoadingProducts: false,
+  isLoadingCategories: false,
+  error: null,
+
+  // Fetch products and categories asynchronously
+  fetchProducts: async () => {
+    set({ isLoadingProducts: true, error: null });
+    try {
+      const data = await ApiService.get("/products");
+      const products = data as Product[];
+      set({ products, isLoadingProducts: false });
+    } catch (error) {
+      set({ error: error instanceof Error ? error.message : "An unknown error occurred", isLoadingProducts: false });
+    }
+  },
+
+  fetchCategories: async () => {
+    set({ isLoadingCategories: true, error: null });
+    try {
+      const data = await ApiService.get("/categories");
+      const categories = data as Category[];
+      set({ categories, isLoadingCategories: false });
+    } catch (error) {
+      set({ error: error instanceof Error ? error.message : "An unknown error occurred", isLoadingCategories: false });
+    }
+  },
+
+  // Cart manipulation actions
+  addToCart: (productId, quantity = 1) =>
+    set((state) => ({
+      cart: addToCart(state.cart, productId, quantity),  // Action for adding to the cart
+    })),
+
+  removeFromCart: (productId) =>
+    set((state) => ({
+      cart: removeFromCart(state.cart, productId),  // Action for removing from the cart
+    })),
+
+  incrementQuantity: (productId, incrementBy = 1) =>
+    set((state) => ({
+      cart: incrementQuantity(state.cart, productId, incrementBy),  // Action for incrementing quantity
+    })),
+
+  decrementQuantity: (productId, decrementBy = 1) =>
+    set((state) => ({
+      cart: decrementQuantity(state.cart, productId, decrementBy),  // Action for decrementing quantity
+    })),
+
+  clearCart: () => set({ cart: clearCart() }),  // Action for clearing the cart
+}));
+\end{verbatim}
+
+In this implementation, each action that modifies the cart state, such as adding, removing, or changing the quantity of items, is handled by separate functions that are imported from the \texttt{actions} file. These functions, such as \texttt{addToCart}, \texttt{removeFromCart}, and \texttt{incrementQuantity}, encapsulate the logic for each operation, keeping the store itself clean and focused on state management.
+
+By offloading the business logic to separate action functions, the store becomes more maintainable and testable, and the components remain focused on rendering the UI.
+
+This structure allows for centralized management of the global state, ensuring that components that need access to shared state, such as the product list or the cart, can easily access and modify the state without unnecessary complexity.
+
+
+\subsubsection{SCSS for Styling}
+Styling is managed using \texttt{SCSS}, a superset of CSS that includes features such as variables, nesting, and mixins. SCSS facilitates more structured and maintainable stylesheets. To avoid conflicts and ensure modularity, \texttt{CSS Modules} are used in combination with SCSS. This approach scopes styles locally to the components, preventing global style leaks and ensuring component-specific styling.
+
+\subsubsection{ApiService for Backend Communication}
+
+To facilitate communication between the frontend and the backend, an \texttt{ApiService} class is implemented. This service acts as a wrapper around the \texttt{fetch} API, allowing the frontend to send HTTP requests to the backend and handle responses in a consistent manner.
+
+The \texttt{ApiService} class defines static methods for sending GET, POST, PUT, and DELETE requests to the backend. The base URL and port for the API are dynamically configured through environment variables, ensuring that the application can easily switch between different environments, such as development and production. In case no environment variables are set, default values are provided.
+
+The class is structured as follows:
+
+\begin{verbatim}
+class ApiService {
+  private static baseUrl: string = import.meta.env.VITE_API_BASE_URL || "http://localhost";
+  private static port: string = import.meta.env.VITE_API_PORT || "3000";
+
+  private static get fullUrl(): string {
+    return `${this.baseUrl}:${this.port}/api`;
+  }
+
+  private static async handleResponse(response: Response): Promise<unknown> {
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`API-Error: ${response.status} - ${errorText}`);
+    }
+    return response.json();
+  }
+
+  public static async get(endpoint: string, headers: Headers = {}): Promise<unknown> {
+    try {
+      const response = await fetch(`${this.fullUrl}${endpoint}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          ...headers,
+        },
+      });
+      return await this.handleResponse(response);
+    } catch (error) {
+      console.error("GET Request Error:", error);
+      throw error;
+    }
+  }
+
+  public static async post(endpoint: string, body: Record<string, unknown>, headers: Headers = {}): Promise<unknown> {
+    try {
+      const response = await fetch(`${this.fullUrl}${endpoint}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...headers,
+        },
+        body: JSON.stringify(body),
+      });
+      return await this.handleResponse(response);
+    } catch (error) {
+      console.error("POST Request Error:", error);
+      throw error;
+    }
+  }
+
+  public static async put(endpoint: string, body: Record<string, unknown>, headers: Headers = {}): Promise<unknown> {
+    try {
+      const response = await fetch(`${this.fullUrl}${endpoint}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          ...headers,
+        },
+        body: JSON.stringify(body),
+      });
+      return await this.handleResponse(response);
+    } catch (error) {
+      console.error("PUT Request Error:", error);
+      throw error;
+    }
+  }
+
+  public static async delete(endpoint: string, headers: Headers = {}): Promise<unknown> {
+    try {
+      const response = await fetch(`${this.fullUrl}${endpoint}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          ...headers,
+        },
+      });
+      return await this.handleResponse(response);
+    } catch (error) {
+      console.error("DELETE Request Error:", error);
+      throw error;
+    }
+  }
+}
+\end{verbatim}
+
+The \texttt{ApiService} class provides a consistent and reusable way to interact with the backend by making API calls. It handles both the sending of requests and the processing of responses. The methods check the response status and, if the request was successful, parse the JSON body; otherwise, an error is thrown with the appropriate status code and message.
+
+This service centralizes all API calls, making it easier to manage and maintain the communication layer of the application. It abstracts the complexities of the \texttt{fetch} API and simplifies error handling and response processing.
+
+By using this service, the frontend components can remain focused on their UI responsibilities, while the \texttt{ApiService} manages the interaction with the backend.
+
+
