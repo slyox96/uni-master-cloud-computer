@@ -1,15 +1,22 @@
-// .add_to_cart {
-//   height: 80%;
-//   border-radius: 8px;
-//   border: 1px solid transparent;
-//   font-weight: 500;
-//   font-family: inherit;
-//   color: white;
-//   background-color: #1a1a1a;
-//   cursor: pointer;
-//   transition: border-color 0.25s;
+.add {
+  background-color: violet;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 
-//   &:hover {
-//     background-color: rgb(196, 196, 196);
-//   }
-// }
+  &:hover {
+      background-color: darkviolet;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+      background-color: purple;
+      transform: scale(0.95);
+  }
+}

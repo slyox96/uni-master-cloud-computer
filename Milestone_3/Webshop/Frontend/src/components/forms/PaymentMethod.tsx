@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import styles from './PaymentMethod.module.scss';
+import React, { useState } from "react";
+import styles from "./PaymentMethod.module.scss";
 
-const PaymentMethod: React.FC = () => {
-  const [paymentMethod, setPaymentMethod] = useState<'paypal' | 'creditcard'>('paypal');
-
+const PaymentMethod = ({ data, onChange }: any) => {
   const handlePaymentMethodChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPaymentMethod(event.target.value as 'paypal' | 'creditcard');
+    onChange({ method: event.target.value });
   };
 
   return (
@@ -14,31 +12,28 @@ const PaymentMethod: React.FC = () => {
 
       <div className={styles.paymentOptions}>
         <label className={styles.radioLabel}>
-          <input
-            type="radio"
-            value="paypal"
-            checked={paymentMethod === 'paypal'}
-            onChange={handlePaymentMethodChange}
-          />
+          <input type="radio" value="paypal" checked={data.method === "paypal"} onChange={handlePaymentMethodChange} />
           PayPal
         </label>
         <label className={styles.radioLabel}>
-          <input
-            type="radio"
-            value="creditcard"
-            checked={paymentMethod === 'creditcard'}
-            onChange={handlePaymentMethodChange}
-          />
+          <input type="radio" value="creditcard" checked={data.method === "creditcard"} onChange={handlePaymentMethodChange} />
           Kreditkarte
         </label>
       </div>
 
-      {paymentMethod === 'paypal' ? (
+      {data.method === "paypal" ? (
         <div className={styles.paypalFields}>
           <h3>PayPal</h3>
           <label>
             E-Mail-Adresse:
-            <input type="email" placeholder="Ihre PayPal E-Mail" className={styles.inputField} />
+            <input
+              type="email"
+              name="paypalEmail"
+              placeholder="Ihre PayPal E-Mail"
+              value={data.paypalEmail}
+              onChange={(e) => onChange({ paypalEmail: e.target.value })}
+              className={styles.inputField}
+            />
           </label>
         </div>
       ) : (
@@ -46,15 +41,35 @@ const PaymentMethod: React.FC = () => {
           <h3>Kreditkarte</h3>
           <label>
             Kartennummer:
-            <input type="text" placeholder="1234 5678 9012 3456" className={styles.inputField} />
+            <input
+              type="text"
+              name="creditCardNumber"
+              placeholder="1234 5678 9012 3456"
+              value={data.creditCardNumber}
+              onChange={(e) => onChange({ creditCardNumber: e.target.value })}
+              className={styles.inputField}
+            />
           </label>
           <label>
             Ablaufdatum:
-            <input type="month" className={styles.inputField} />
+            <input
+              type="month"
+              name="expiryDate"
+              value={data.expiryDate}
+              onChange={(e) => onChange({ expiryDate: e.target.value })}
+              className={styles.inputField}
+            />
           </label>
           <label>
             CVC:
-            <input type="text" placeholder="123" className={styles.inputField} />
+            <input
+              type="text"
+              name="cvc"
+              placeholder="123"
+              value={data.cvc}
+              onChange={(e) => onChange({ cvc: e.target.value })}
+              className={styles.inputField}
+            />
           </label>
         </div>
       )}

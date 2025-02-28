@@ -18,7 +18,9 @@ export const Cart: React.FC = () => {
       </div>
       <div className={styles.buybar}>
         <CartPrice />
-        <button onClick={handleCheckout}>Zur Kasse</button>
+        <button
+        className={styles.checkout}
+        onClick={handleCheckout}>Checkout</button>
       </div>
     </>
   );
