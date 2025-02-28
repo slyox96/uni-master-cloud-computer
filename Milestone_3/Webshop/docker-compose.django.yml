@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+  # Django-Datenbank (PostgreSQL)
   database_django:
     image: postgres:15
     container_name: postgres_db
@@ -16,6 +17,7 @@ services:
       timeout: 3s
       retries: 5
 
+  # Backend (Django)
   backend:
     build:
       context: .
@@ -31,6 +33,25 @@ services:
     volumes:
       - ./Backend_django:/app
     command: ["sh", "-c", "/app/init.sh && python manage.py runserver 0.0.0.0:8000"]
+
+  # Frontend (React mit Vite und NGINX)
+  frontend:
+    build:
+      context: .
+      dockerfile: ./Frontend/Dockerfile
+    container_name: react_app
+    ports:
+      - "80:80"  # NGINX-Server auf Port 80
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_API_URL=http://backend:8000  # API-URL des Backends im Frontend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
   postgres_django:
