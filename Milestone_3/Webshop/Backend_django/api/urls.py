@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import ProductViewSet, OrderViewSet, OrderItemViewSet, CategoryViewSet
+from .views import ProductViewSet, OrderViewSet, OrderItemViewSet, CategoryViewSet, place_order
 from .views import ProductListCreate
 from . import views
 
@@ -8,7 +8,8 @@ router = DefaultRouter()
 router.register(r'products', ProductViewSet)  
 router.register(r'orders', OrderViewSet)
 router.register(r'orderitems', OrderItemViewSet)
-router.register(r'categories', CategoryViewSet) 
+router.register(r'categories', CategoryViewSet)
+path('place_order/', place_order, name='place_order'),
 
 urlpatterns = [
     path('', include(router.urls)),  

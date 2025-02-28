@@ -1,4 +1,5 @@
 from django.db import models
+import dj_database_url
 from django.utils import timezone
 
 # Enum-like choices for OrderStatus
@@ -26,6 +27,7 @@ class Product(models.Model):
     stock = models.IntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE) 
     image = models.ImageField(upload_to='products/', null=True, blank=True)
+    stock = models.IntegerField(default=0)  # Add stock field
 
     def __str__(self):
         return self.name

@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y curl
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the project files
-COPY Backend_django /app
+COPY . /app
 RUN chmod +x /app/init.sh
 
 # Expose the port Django runs on

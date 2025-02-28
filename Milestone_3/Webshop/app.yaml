@@ -1,0 +1,12 @@
+runtime: python3.13  # Change to your Python version
+entrypoint: gunicorn -b :$PORT Backend_django.wsgi
+
+env_variables:
+  DJANGO_SETTINGS_MODULE: "Backend_django.settings"
+  SECRET_KEY: "django-insecure-9)u5ho%gydt3wsr2xs6m_86935w^sgyn3agn1(jz0powm%7y&@"
+
+handlers:
+  - url: /static
+    static_dir: static/
+  - url: /.*
+    script: auto

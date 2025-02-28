@@ -28,7 +28,7 @@ DATABASES = {
         'NAME': os.getenv('POSTGRES_DB', 'webshop'),  # Use env variable
         'USER': os.getenv('POSTGRES_USER', 'admin'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'password'),
-        'HOST': os.getenv('DB_HOST', 'database_django'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
         'PORT': os.getenv('DATABASE_PORT', '5432'),
     }
 }
@@ -43,7 +43,7 @@ SECRET_KEY = 'django-insecure-9)u5ho%gydt3wsr2xs6m_86935w^sgyn3agn1(jz0powm%7y&@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["alpine-tempo-451717-f0", "localhost"]
 
 
 # Application definition
@@ -141,12 +141,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True  # Allow all frontend requests (change for security)
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'w6550872@gmail.com'
+EMAIL_HOST_PASSWORD = 'webshop'
 
