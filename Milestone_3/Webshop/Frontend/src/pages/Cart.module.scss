@@ -3,22 +3,24 @@
 @use "../scss/scrollbar.scss" as scrollbar;
 
 $buybar-height: 5rem;
+$buybar-padding: 2rem;
 
 .buybar {
     position: fixed;
     bottom: 0;
-    width: calc(100% - variables.$drawer-width);
+    width: calc(100% - variables.$drawer-width - 2 * $buybar-padding);
     height: $buybar-height;
-    background-color: rgb(156, 27, 168);
+    background-color: #f9f9f9;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-left: $buybar-padding;
+    padding-right: $buybar-padding;
 }
 
 .container {
     height: calc(100vh - variables.$topbar-height - $buybar-height);
     margin-bottom: $buybar-height;
-    // background-color: lightcoral;
     display: flex;
     justify-content: center;
     align-items: center;

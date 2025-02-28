@@ -3,7 +3,6 @@ import { useStore } from '../store/store';
 import { CartItem, Product } from '../types/Product';
 import ProductCard from './ProductCard';
 import styles from './CartList.module.scss';
-import CartPrice from '../pages/CartPrice';
 import Quantity from './actionButtons/Quantity';
 
 const CartList = () => {
