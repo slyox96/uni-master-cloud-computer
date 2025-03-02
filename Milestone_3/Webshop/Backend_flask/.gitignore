@@ -1,0 +1,60 @@
+# Python Bytecode-Dateien
+__pycache__/
+*.pyc
+*.pyo
+
+# Flask-Spezifische Dateien
+instance/
+*.db
+*.sqlite3
+
+# Virtuelle Umgebung (falls du eine verwendest)
+venv/
+env/
+.venv/
+.env/
+
+# IDE/Editor spezifische Dateien (z.B. PyCharm, VSCode)
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporäre Dateien (z.B. von Betriebssystem oder Texteditoren)
+*.swp
+*.swo
+*~
+
+# Google API-Anmeldeinformationen und Tokens
+credentials.json
+token.json
+
+# Flask Migrations und Datenbanken
+/migrations/
+*.sqlite3
+
+# Betriebssystem-spezifische Dateien
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebooks (falls verwendet)
+.ipynb_checkpoints/
+
+# Umgebungsdateien
+.env
+
+# Testberichte (falls du Unit-Tests hast)
+.coverage
+nosetests.xml
+pytest*
+*.cover
+*.hypothesis/
+
+# IDE-Spezifische Cache-Ordner
+.pytest_cache/
+
+# Docker (falls du Docker verwendest)
+docker-compose.override.yml
+docker-compose.prod.yml
+*.log

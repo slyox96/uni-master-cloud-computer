@@ -1,10 +1,12 @@
-from flask import Blueprint, request, jsonify
+# app/routes/product_routes.py
+from flask import Blueprint, jsonify, request
 from app.models import db, Product
 
-product_bp = Blueprint("product", __name__)
+# Definiere Blueprint für Produkte
+product_bp = Blueprint("product", __name__, url_prefix="/products")
 
 # GET: Alle Produkte abrufen
-@product_bp.route("/products", methods=["GET"])
+@product_bp.route("/", methods=["GET"])
 def get_products():
     products = Product.query.all()
     return jsonify([
@@ -21,7 +23,7 @@ def get_products():
     ])
 
 # POST: Neues Produkt erstellen
-@product_bp.route("/products", methods=["POST"])
+@product_bp.route("/", methods=["POST"])
 def create_product():
     data = request.json
     if not all(key in data for key in ["name", "description", "price", "stock", "category_id"]):
