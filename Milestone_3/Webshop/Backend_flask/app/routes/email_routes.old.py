@@ -1,5 +1,7 @@
 from flask import Blueprint, request, jsonify, current_app
 from flask_mail import Message
+from app.auth.gmail_auth import get_credentials
+
 
 email_bp = Blueprint('email', __name__)
 
