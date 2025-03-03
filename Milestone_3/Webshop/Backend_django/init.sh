@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# Run migrations
 echo "Running migrations..."
 python manage.py makemigrations
 python manage.py migrate
