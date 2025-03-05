@@ -16,7 +16,7 @@
     border-radius: 5px;
 
     &:hover {
-        background-color: darken(colors.$secondary, 10%);
+        background-color: colors.$delte-secondary;
     }
 }
 
@@ -29,6 +29,6 @@
     border-radius: 5px;
 
     &:hover {
-        background-color: darken(colors.$secondary, 10%);
+        background-color: colors.$delte-secondary;
     }
 }
