@@ -7,6 +7,9 @@ class Config:
     SQLALCHEMY_DATABASE_URI = "sqlite:///webshop.db"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
+    CORS_ORIGINS = os.getenv("CORS_ORIGINS", "http://localhost:5173")
+    CORS_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 587
     MAIL_USE_SSL = True

@@ -3,16 +3,16 @@ from app import db
 from app.models import Category
 from app.schemas import category_schema, categories_schema  # Importiere Marshmallow-Schemas
 
-category_bp = Blueprint("category", __name__)
+category_bp = Blueprint("category", __name__, url_prefix="/categories")
 
 # GET: Alle Kategorien abrufen
-@category_bp.route("/categories", methods=["GET"])
+@category_bp.route("/", methods=["GET"])
 def get_categories():
     categories = Category.query.all()
     return jsonify(categories_schema.dump(categories))  # Nutze das Schema für saubere JSON-Ausgabe
 
 # GET: Einzelne Kategorie abrufen
-@category_bp.route("/categories/<int:category_id>", methods=["GET"])
+@category_bp.route("/<int:category_id>", methods=["GET"])
 def get_category(category_id):
     category = Category.query.get(category_id)
     if not category:
@@ -20,7 +20,7 @@ def get_category(category_id):
     return jsonify(category_schema.dump(category))
 
 # POST: Neue Kategorie erstellen
-@category_bp.route("/categories", methods=["POST"])
+@category_bp.route("/", methods=["POST"])
 def create_category():
     data = request.json
     if not data or "name" not in data:
@@ -32,7 +32,7 @@ def create_category():
     return jsonify(category_schema.dump(category)), 201  # Nutze das Schema für die Ausgabe
 
 # PUT: Kategorie aktualisieren
-@category_bp.route("/categories/<int:category_id>", methods=["PUT"])
+@category_bp.route("/<int:category_id>", methods=["PUT"])
 def update_category(category_id):
     category = Category.query.get(category_id)
     if not category:
@@ -46,7 +46,7 @@ def update_category(category_id):
     return jsonify(category_schema.dump(category))
 
 # DELETE: Kategorie löschen
-@category_bp.route("/categories/<int:category_id>", methods=["DELETE"])
+@category_bp.route("/<int:category_id>", methods=["DELETE"])
 def delete_category(category_id):
     category = Category.query.get(category_id)
     if not category:

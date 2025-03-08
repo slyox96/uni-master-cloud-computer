@@ -20,6 +20,7 @@ class ApiService {
     try {
       const response = await fetch(`${this.fullUrl}${endpoint}`, {
         method: "GET",
+        mode: 'cors',
         headers: {
           "Content-Type": "application/json",
           ...headers,
@@ -36,6 +37,7 @@ class ApiService {
     try {
       const response = await fetch(`${this.fullUrl}${endpoint}`, {
         method: "POST",
+        mode: 'cors',
         headers: {
           "Content-Type": "application/json",
           ...headers,
@@ -53,6 +55,7 @@ class ApiService {
     try {
       const response = await fetch(`${this.fullUrl}${endpoint}`, {
         method: "PUT",
+        mode: 'cors',
         headers: {
           "Content-Type": "application/json",
           ...headers,

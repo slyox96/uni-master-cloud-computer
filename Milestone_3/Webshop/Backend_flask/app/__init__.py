@@ -1,31 +1,46 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
 from flask_migrate import Migrate
-from flask_marshmallow import Marshmallow  # Marshmallow importieren
+from flask_marshmallow import Marshmallow
 from app.config import Config
 
-# Initialisiere die Erweiterungen direkt hier
-db = SQLAlchemy()  # Instanz von SQLAlchemy
-ma = Marshmallow()  # Instanz von Marshmallow
-mail = Mail()  # Flask-Mail Instanz
-migrate = Migrate()  # Flask-Migrate Instanz
+# Initialisiere die Erweiterungen
+db = SQLAlchemy()
+ma = Marshmallow()
+mail = Mail()
+migrate = Migrate()
 
 def create_app():
     # Erstelle die Flask-App-Instanz
     app = Flask(__name__)
-    
-    # Konfiguriere die App mit den Einstellungen aus der Config-Datei
+    # App-Konfiguration laden
     app.config.from_object(Config)
+    
+    app.url_map.strict_slashes = False
+    # CORS(app)
+    
+    
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
+    # CORS konfigurieren
+    # cors_origins = Config.CORS_ORIGINS.split(",")  # Ursprünge aus der Konfiguration
+    # cors_methods = Config.CORS_METHODS
+    
+    # # CORS konfigurieren
+    # CORS(app, resources={r"/api/*": {
+    #     "origins": cors_origins, 
+    #     "methods": cors_methods}})
 
-    # Initialisiere die Erweiterungen mit der Flask-App
-    db.init_app(app)   # SQLAlchemy initialisieren
-    ma.init_app(app)   # Marshmallow initialisieren
-    mail.init_app(app)  # Flask-Mail initialisieren
-    migrate.init_app(app, db)  # Flask-Migrate initialisieren mit der db-Instanz
 
-    # Importiere und registriere die Blueprints für die Routen
+    # Erweiterungen initialisieren
+    db.init_app(app)
+    ma.init_app(app)
+    mail.init_app(app)
+    migrate.init_app(app, db)
+
+    # Routen (Blueprints) registrieren
     from app.routes import api_bp
-    app.register_blueprint(api_bp)  # Registriere die API-Routen mit der App
+    app.register_blueprint(api_bp)
 
-    return app  # Gib die initialisierte Flask-App zurück
+    return app
