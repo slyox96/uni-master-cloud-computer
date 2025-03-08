@@ -1,8 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow  # ✅ Füge Marshmallow hinzu
 
 db = SQLAlchemy()
+ma = Marshmallow()  
 
-# Importiere die einzelnen Modelle
 from app.models.category import Category
 from app.models.product import Product
 from app.models.order import Order

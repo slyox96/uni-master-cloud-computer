@@ -7,7 +7,6 @@ from app.routes.category_routes import category_bp
 from app.routes.product_routes import product_bp
 from app.routes.order_routes import order_bp
 
-from app.routes.auth_routes import auth_bp
 from app.routes.sendGrid_routes import sendGrid_bp
 
 api_bp.register_blueprint(category_bp)
@@ -15,4 +14,3 @@ api_bp.register_blueprint(product_bp)
 api_bp.register_blueprint(order_bp)
 
 api_bp.register_blueprint(sendGrid_bp)
-api_bp.register_blueprint(auth_bp)
