@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
-from app.models import db, Category
+from app import db
+from app.models import Category
 from app.schemas import category_schema, categories_schema  # Importiere Marshmallow-Schemas
 
 category_bp = Blueprint("category", __name__)

@@ -1,4 +1,4 @@
-from app.models import db
+from app import db
 from datetime import datetime
 
 class Product(db.Model):
@@ -13,5 +13,3 @@ class Product(db.Model):
 
     category_id = db.Column(db.Integer, db.ForeignKey("category.id"), nullable=False)
     category = db.relationship("Category", back_populates="products")
-
-    order_items = db.relationship("OrderItem", back_populates="product")

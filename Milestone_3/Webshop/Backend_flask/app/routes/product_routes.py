@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
-from app.models import db, Product
+from app import db
+from app.models import Product
 from app.schemas import product_schema, products_schema  # Importiere die Marshmallow-Schemas
 
 # Definiere Blueprint für Produkte

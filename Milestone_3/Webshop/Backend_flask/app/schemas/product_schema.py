@@ -1,4 +1,5 @@
-from app.models import ma, Product
+from app import ma
+from app.models import Product
 from app.schemas.category_schema import CategorySchema
 
 class ProductSchema(ma.SQLAlchemySchema):
