@@ -4,19 +4,26 @@
 
 .container {
     height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 
+    background-color: lightcoral;
     @include scrollbar.custom-scrollbar(colors.$primary, colors.$secondary, #ffe0e0);
 
     .product_list {
         list-style: none;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background-color: lightcyan;
 
         & > li {
-            width: 100%;
+            width: 300%;
             display: flex;
             justify-content: center;
+            background-color: lightblue;
         }
 
         & > li:first-child {

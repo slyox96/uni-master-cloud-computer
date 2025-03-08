@@ -11,7 +11,7 @@ type PricePickerProps = {
 const PricePicker: React.FC<PricePickerProps> = ({ minPrice, maxPrice, onMinPriceChange, onMaxPriceChange }) => {
   return (
     <div className={styles.pricePicker}>
-      <label>Price: </label>
+      <label id="price">Price: </label>
       <input
         type="number"
         value={minPrice}

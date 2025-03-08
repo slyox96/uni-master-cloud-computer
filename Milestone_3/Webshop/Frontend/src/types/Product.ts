@@ -1,10 +1,9 @@
-export interface Category {
+export type Category = {
   id: number;
   name: string;
 }
   
-  export interface Product {
-    productId: number;
+  export type Product = {
     id: number;
     name: string;
     description: string;
@@ -16,7 +15,7 @@ export interface Category {
     updatedAt: string;
   }
   
-  export interface CartItem {
+  export type CartItem = {
     productId: number;
     quantity: number;
   }

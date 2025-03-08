@@ -21,7 +21,6 @@ def create_app():
     app.url_map.strict_slashes = False
     # CORS(app)
     
-    
     CORS(app, resources={r"/api/*": {"origins": "*"}})
     # CORS konfigurieren
     # cors_origins = Config.CORS_ORIGINS.split(",")  # Ursprünge aus der Konfiguration

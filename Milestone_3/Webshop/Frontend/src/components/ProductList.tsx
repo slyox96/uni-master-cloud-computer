@@ -1,9 +1,10 @@
 import React, { ReactNode } from 'react';
-import styles from "./ProductList.module.scss";
 import { useStore } from '../store/store';
 import { Product } from "../types/Product";
 import ProductCard from './ProductCard';
 import { useFilterStore } from '../hooks/useFilterStore';
+
+import styles from "./ProductList.module.scss";
 
 type ProductListProps = {
   isInCart: boolean;

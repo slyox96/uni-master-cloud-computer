@@ -1,8 +1,9 @@
 import React, { ReactNode } from "react";
 import { Product } from "../types/Product";
-import styles from "./ProductCard.module.scss";
 
 import ProductPrice from "./ProductPrice";
+
+import styles from "./ProductCard.module.scss";
 
 import defaultImage from "../assets/No_Image_Available.jpg"
 
