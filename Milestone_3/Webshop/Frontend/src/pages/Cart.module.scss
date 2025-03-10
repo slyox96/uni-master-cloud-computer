@@ -5,50 +5,54 @@
 $buybar-height: 5rem;
 $buybar-padding: 2rem;
 
-.buybar {
-    position: fixed;
-    bottom: 0;
-    width: calc(100% - variables.$drawer-width - 2 * $buybar-padding);
-    height: $buybar-height;
-    background-color: #f9f9f9;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-left: $buybar-padding;
-    padding-right: $buybar-padding;
-
-    .checkout {
-        background-color: violet;
-        color: white;
-        font-size: 1rem;
-        font-weight: bold;
-        padding: 0.6rem 1.2rem;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-
-        &:hover {
-            background-color: darkviolet;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        &:active {
-            background-color: purple;
-            transform: scale(0.95);
-        }
-    }
-}
-
 .container {
     height: calc(100vh - variables.$topbar-height - $buybar-height);
     margin-bottom: $buybar-height;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    overflow-y: auto;
 
-    @include scrollbar.custom-scrollbar(colors.$primary, colors.$secondary, #ffe0e0);
+    .products {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow-y: auto;
+    
+        @include scrollbar.custom-scrollbar(colors.$primary, colors.$secondary, #ffe0e0);
+    }
+
+    .buybar {
+        position: fixed;
+        bottom: 0;
+        width: calc(100% - variables.$drawer-width - 2 * $buybar-padding);
+        height: $buybar-height;
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-left: $buybar-padding;
+        padding-right: $buybar-padding;
+
+        .checkout {
+            background-color: violet;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
+            &:hover {
+                background-color: darkviolet;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            }
+
+            &:active {
+                background-color: purple;
+                transform: scale(0.95);
+            }
+        }
+    }
 }

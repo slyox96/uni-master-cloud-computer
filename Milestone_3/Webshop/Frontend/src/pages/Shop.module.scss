@@ -4,14 +4,14 @@
 
 .container{
     height: calc(100vh - variables.$topbar-height - variables.$searchbar-height);
-    margin-top: variables.$searchbar-height;
+    margin-top: 5rem;
     
     .searchbar {
         position: fixed;
         top: variables.$topbar-height;
-        width: calc(100% - variables.$drawer-width);
+        width: calc(100vw - variables.$drawer-width);
         height: variables.$searchbar-height;
-        // background-color: lightblue;
+        background-color: lightblue;
         display: flex;
         align-items: center;
         gap: 0.5rem;

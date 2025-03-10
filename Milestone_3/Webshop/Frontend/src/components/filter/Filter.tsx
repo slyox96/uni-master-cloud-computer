@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Dropdown } from './Dropdown';
-import styles from "./Filter.module.scss";
 import PricePicker from './PricePicker';
 import { useFilterStore } from '../../hooks/useFilterStore';
-import { Category } from '../../types/Product'; // Importiere den Category-Typ
+import { Category } from '../../types/Product';
+import styles from "./Filter.module.scss";
 
 const Filter = () => {
   const { setFilterOptions } = useFilterStore();

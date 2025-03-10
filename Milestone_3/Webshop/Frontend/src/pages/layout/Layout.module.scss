@@ -20,11 +20,13 @@
 
   .content_container{
       position: absolute;
+      width: calc(100vw - variables.$drawer-width);
+      height: calc(100vh - variables.$topbar-height);
       top: variables.$topbar-height;
       left: variables.$drawer-width;
       right: 0;
       bottom: 0;
       overflow: auto;
-      background-color: lightgray;
+      background-color: rgb(221, 215, 215);
   }
 }

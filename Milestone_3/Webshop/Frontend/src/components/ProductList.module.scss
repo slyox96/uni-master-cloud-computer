@@ -7,27 +7,28 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
 
-    background-color: lightcoral;
+    // background-color: lightcoral;
     @include scrollbar.custom-scrollbar(colors.$primary, colors.$secondary, #ffe0e0);
 
-    .product_list {
+    ul {
         list-style: none;
         display: flex;
+        flex-direction: column;
         align-items: center;
-        width: 100%;
-        background-color: lightcyan;
+        gap: 1rem;
+
+        background-color: lightcoral;
 
         & > li {
-            width: 300%;
             display: flex;
             justify-content: center;
+            align-items: center;
             background-color: lightblue;
         }
 
         & > li:first-child {
-            margin-top: 1rem;
+            // margin-top: 1rem;
         }
 
         & > li:last-child {

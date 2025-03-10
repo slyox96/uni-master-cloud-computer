@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./AddToCart.module.scss";
 import { useStore } from "../../store/store";
 import { useToastStore } from "../../hooks/useToastStore";
+import styles from "./AddToCart.module.scss";
 
 type AddToCartProps = {
   productId: number;

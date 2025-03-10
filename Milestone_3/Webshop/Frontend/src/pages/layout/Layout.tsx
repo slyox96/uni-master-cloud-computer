@@ -1,11 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { TopBar } from "../../components/ui/TopBar";
-import { Drawer } from "../../components/ui/Drawer";
 
-import styles from "./Layout.module.scss";
 import Modal from "../../components/Modal/Modal";
-import Toast from "../../components/ui/Toast";
+import Toast from "../../components/Ui/Toast";
+import { Drawer } from "../../components/Ui/Drawer";
+import { TopBar } from "../../components/Ui/TopBar";
+import styles from "./Layout.module.scss";
 
 const Layout: React.FC = () => {
   return (

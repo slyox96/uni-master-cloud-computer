@@ -2,8 +2,8 @@ import React from 'react';
 import { useStore } from '../store/store';
 import { CartItem, Product } from '../types/Product';
 import ProductCard from './ProductCard';
+import Quantity from './ActionButtons/Quantity';
 import styles from './CartList.module.scss';
-import Quantity from './actionButtons/Quantity';
 
 const CartList = () => {
   const { cart, products } = useStore();

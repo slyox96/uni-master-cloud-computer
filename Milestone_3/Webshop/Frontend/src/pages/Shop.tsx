@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useStore } from "../store/store";
-import styles from "./Shop.module.scss";
 import { useModalStore } from "../hooks/useModalStore";
 import ProductList from "../components/ProductList";
 import Filter from "../components/filter/Filter";
 import AddToCart from "../components/ActionButtons/AddToCart";
+import styles from "./Shop.module.scss";
 
 export const Shop = () => {
   const { isLoadingProducts, error, fetchProducts, fetchCategories } = useStore();

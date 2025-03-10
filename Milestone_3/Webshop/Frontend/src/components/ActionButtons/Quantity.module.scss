@@ -1,11 +1,9 @@
 .quantity_container {
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 
   .quantity_button {
-    height: 80%;
     aspect-ratio: 1 / 1;
     border: none;
     cursor: pointer;
@@ -24,13 +22,13 @@
     }
 
     img {
-      width: 50%;
+      width: .75rem;
       aspect-ratio: 1 / 1;
     }
   }
 
   .quantity_display {
-    font-size: 80%;
+    font-size: 1rem;
     font-weight: bold;
     color: #333;
     margin: 0 .5rem;

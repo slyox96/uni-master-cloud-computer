@@ -28,7 +28,7 @@ const ProductList: React.FC<ProductListProps> = ({ isInCart, actionButtons }) =>
       ) : products.length === 0 ? (
         <p>No products available</p>
       ) : (
-        <ul className={styles.product_list}>
+        <ul>
           {filteredProducts.map((product: Product) => (
             <li key={product.id}>
               <ProductCard
