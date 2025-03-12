@@ -1,0 +1,60 @@
+.formCard {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+  }
+  
+  .formGroup {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .input,
+  .select,
+  .textarea,
+  .fileInput {
+    padding: 0.6rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  
+  .textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .imagePreview {
+    margin-top: 1rem;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .submitButton {
+    width: 100%;
+    padding: 0.8rem;
+    font-weight: bold;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  
+    &:hover {
+      background-color: #005dc0;
+    }
+  }
+  
